@@ -1,15 +1,16 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv').config()
 const connectDB = require('./config/database');
 const {errorHandler} = require('./middlewares/errorMiddleware')
 const helmet = require("helmet");
 const cors = require('cors')
-
-
+// const path = require('path')
+const settings = "development"
+const morgan = require('morgan')
 
 
 connectDB()
-
 
 const port = process.env.PORT || 4070
 const app = express()
@@ -23,20 +24,47 @@ app.use(helmet());
 app.use(cors(corsOption));
 
 
+if (settings === 'development') {
+  app.use(morgan('dev'))
+}
+
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+
+
+
 
 
 app.use('/api/users', require('./routes/userRoute'))
 app.use('/api/station', require('./routes/stationRoute'))
 app.use('/api/documents', require('./routes/documentRoute'))
+app.use('/api/upload', require('./routes/uploadRoute'))
+
+
+const dirname = path.resolve()
+// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+app.use('/uploads', express.static(path.join(dirname, '/uploads')))
+
+if (settings === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
+  })
+}
 
 
 
 app.use(errorHandler)
 
 
-app.get('/', (req, res) => res.send('Web Based Printing Service Api'));
 
 
 app.listen(port, () => console.log(`Server Started on port ${port}`))

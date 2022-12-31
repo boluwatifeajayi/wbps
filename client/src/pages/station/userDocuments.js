@@ -52,7 +52,7 @@ function Documents() {
               
               // <UserDocItem document={document}/> 
               <div>
-                 <h3>{document.file}</h3>
+                 <h3>{document.theUser.firstname}</h3>
 		
                 <Link to={`/station/document/${document._id}`}>
                   <button className="learn-button mt-4">Learn More</button>

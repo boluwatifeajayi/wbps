@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-// const API_URL = 'http://localhost:4070/api/users/'
+// const API_URL = '/api/users/'
 axios.defaults.withCredentials = true
 
 // register user
 const register = async(userData) => {
-	const response = await axios.post('http://localhost:4070/api/users/register', userData)
+	const response = await axios.post('/api/users/register', userData)
 
 	if(response.data){
 		localStorage.setItem('user', JSON.stringify(response.data))
@@ -17,7 +17,7 @@ const register = async(userData) => {
 
 // login user
 const login = async(userData) => {
-	const response = await axios.post('http://localhost:4070/api/users/login', userData)
+	const response = await axios.post('/api/users/login', userData)
 
 	if(response.data){
 		localStorage.setItem('user', JSON.stringify(response.data))

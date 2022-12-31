@@ -18,7 +18,41 @@ function Document() {
 
   const {singleDocument, isLoading, isError, isSuccess, docmessage} = useSelector((state) => state.document)
 
-  const { file, paymentMethod} = singleDocument
+  const { docItem, paymentMethod} = singleDocument
+
+
+  const handleClick = () => {
+    // this is the URL of the PDF file
+    const pdfUrl = 'https://example.com/document.pdf';
+
+    // create an "a" element and set its "download" attribute
+    // to the file name of the PDF and its "href" attribute to the URL of the PDF
+    const link = document.createElement('a');
+    link.setAttribute('download', 'document.pdf');
+    link.setAttribute('href', pdfUrl);
+
+    // append the "a" element to the body and click it to trigger the download
+    document.body.appendChild(link);
+    link.click();
+
+    // remove the "a" element from the body
+    document.body.removeChild(link);
+  };
+
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    
+    fetch(docItem)
+      .then(res => res.blob())
+      .then(blob => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.setAttribute("download", docItem);
+        document.body.appendChild(link);
+        link.click();
+      })
+    
+}
 
 
   const onChange = (e) => {
@@ -55,7 +89,7 @@ function Document() {
     return () => {
       dispatch(reset())
     }
-  }, [dispatch, navigate, docmessage, isError, GetSingleDocument])
+  }, [])
 
 
   
@@ -69,9 +103,14 @@ function Document() {
    <div className='row gx-5 mx-1'>
         <div className='col-md-7 border-b document-d mb-4'>
        
-        <h2 className='mt-4'><b>{file}</b></h2>
+        <h2 className='mt-4'><b>{docItem}</b></h2>
+        <button onClick={onButtonClick}>
+                    Download PDF
+                </button>
+               
             
             <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}{paymentMethod}</b></h5> 
+
            
             
 

@@ -15,15 +15,15 @@ const  getDocuments = asyncHandler(async (req, res) => {
 //@desc create objects
 
 const  setDocument = asyncHandler(async (req, res) => {
-	if(!req.body.file|| !req.body.paymentMethod) {
-		res.status(400)
-		throw new Error("please add a text feild")
-	}
+	// if(!req.body.docItem|| !req.body.paymentMethod) {
+	// 	res.status(400)
+	// 	throw new Error("please add a text feild")
+	// }
 
 	const { userid } = res.locals.decoded;
 
 	const {
-		file,
+		docItem,
 		noOfCopies,
 		noOfPages,
 		isSpiralBind,
@@ -38,7 +38,7 @@ const  setDocument = asyncHandler(async (req, res) => {
     const { _id: userId, firstname} = currentUser;
 	
     const newDocument = await Document.create({
-      file,
+      docItem,
       noOfCopies,
       noOfPages,
       isSpiralBind,

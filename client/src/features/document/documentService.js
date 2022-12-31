@@ -1,5 +1,5 @@
 import axios from 'axios'
-// const API_URL = 'http://localhost:4070/api'
+// const API_URL = '/api'
 
 axios.defaults.withCredentials = true
 
@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true
 
 // get all documents
 const allDocuments = async () => {
-	const response = await axios.get('http://localhost:4070/api/documents/all')
+	const response = await axios.get('/api/documents/all')
 	return response.data
 }
 
@@ -21,7 +21,7 @@ const createDocument = async (documentData, token) => {
 			Cookie: `authToken=${token}`
 		}
 	}
-	const response = await axios.post('http://localhost:4070/api/documents/create', documentData, config, {withCredentials: true})
+	const response = await axios.post('/api/documents/create', documentData, config, {withCredentials: true})
 
 	return response.data
 	
@@ -36,7 +36,7 @@ const getDocuments = async (token) => {
 		}
 	}
 
-	const response = await axios.get('http://localhost:4070/api/documents/', config)
+	const response = await axios.get('/api/documents/', config)
 
 	return response.data
 }
@@ -46,14 +46,14 @@ const getDocuments = async (token) => {
 // get single document
 
 const GetSingleDocument = async (id) => {
-	const response = await axios.get(`http://localhost:4070/api/documents/${id}`)
+	const response = await axios.get(`/api/documents/${id}`)
 	return response.data	
 }
 
 // document by station name
 // get all documents
 const stationDocuments = async (stationname) => {
-	const response = await axios.get(`http://localhost:4070/api/documents/document/${stationname}`)
+	const response = await axios.get(`/api/documents/document/${stationname}`)
 	return response.data
 }
 
@@ -73,7 +73,7 @@ const MessageDocument = async (messageData, documentId, token) => {
 		}
 	}
 	
-	const response = await axios.post(`http://localhost:4070/api/documents/${documentId}/message`, messageData, config)
+	const response = await axios.post(`/api/documents/${documentId}/message`, messageData, config)
 	return response.data	
 
 

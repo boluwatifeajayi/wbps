@@ -1,41 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { createDocument } from "../../features/document/documentSlice";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import { Form, Button } from 'react-bootstrap'
+import axios from 'axios'
 
 const CreateDocument = () => {
-    const navigate = useNavigate()
+	const inputRef = useRef();
+	const [progress, setProgress] = useState(0);
+	const [progressShow, setProgressShow] = useState(false)
+	const navigate = useNavigate()
 	const { stationname } = useParams();
-	const [formData, setFormData] = useState({
-		file: '',
-		noOfCopies: 1,
-		noOfPages: 1,
-		isSpiralBind: false,
-		isColored: false,
-		additionalInformation: '',
-		status: 'pending',
-		paymentMethod: '',
-		thestation: stationname
-	})
+	const [uploading, setUploading] = useState(false)
+	const [docItem, setDocItem] = useState("minidoc");
+	const [noOfCopies, setnoOfCopies] = useState(1);
+	const [noOfPages, setnoOfPages] = useState(1);
+	const [isSpiralBind, setisSpiralBind] = useState(false);
+	const [isColored, setisColored] = useState(false);
+	const [additionalInformation, setadditionalInformation] = useState('info');
+	const [status, setstatus] = useState('pending');
+	const [paymentMethod, setpaymentMethod] = useState('yippy');
+	const [thestation, setthestation] = useState(stationname);
+
     
-	const {file, noOfCopies, noOfPages, isSpiralBind, isColored, additionalInformation, paymentMethod, thestation} = formData;
+	const { user } = useSelector((state) => state.userauth)
+
+ 	const token = user.token
+	
+
+	
 
 	const dispatch = useDispatch()
 
-	const onChange = (name,value) => setFormData((prevProfile)=>({...prevProfile,[name]:value}));
+	
+		const headers = {
+		  Authorization: `Bearer ${token}`,
+		 
+		}
+	 
+		// const headers2 = {
+		// 	Authorization: `Bearer ${token}`,
+		//   }
+	   
+	
 
+	  
+
+	 
+
+
+	  const uploadFileHandler = async (e) => {
+		
+		const file = e.target.files[0]
+		const formData = new FormData()
+		formData.append('docItem', file)
+		setUploading(true)
+	
+		try {
+		  
+		  const { data } = await axios.post('/api/upload', formData, {headers})
+	
+		  setDocItem(data)
+		  setUploading(false)
+		} catch (error) {
+		  console.error(error)
+		  setUploading(false)
+		}
+	  }
+
+	const submit = async (e) => {
+		e.preventDefault();
+		
+		const body = {docItem, noOfCopies, noOfPages, isSpiralBind, isColored, additionalInformation, status, paymentMethod, thestation}
+
+	    axios.post('/api/documents/create', body, {headers} ).then((response) => {
+            console.log("response", response);
+          })
+          .catch((error) => {
+            
+            console.error("error >>> ", error);
+          });
+	}
      
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-		const documentData = {
-			file, noOfCopies, noOfPages, isSpiralBind, isColored, additionalInformation, thestation, paymentMethod
-		}
-		dispatch(createDocument(documentData)) 
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+	// 	const documentData = {
+	// 		file, noOfCopies, noOfPages, isSpiralBind, isColored, additionalInformation, thestation, paymentMethod
+	// 	}
+	// 	dispatch(createDocument(documentData)) 
 
-        navigate('/employer/internships')
-		// console.log(typeof(stationname))
-    }
+    //     navigate('/employer/internships')
+	// 	// console.log(typeof(stationname))
+    // }
 
     
 
@@ -47,26 +104,42 @@ const CreateDocument = () => {
       </Link>
             <h2 class="text-center">Create A New Internship</h2>
 		<hr/>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={submit}>
             <div class="row mt-4">
             <div class="col-md-4">
 				<div className="form-group create-form">
-				<input
-					type='text'
+				{/* <input
+					type='file'
 					placeholder='file'
 					name='file'
-                    value={file}
-                    onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+					onChange={handleFileChange} 
 					className="form-input mb-4"
 					required
-            	/>
+            	/> */}
+				<Form.Group controlId='image'>
+              <Form.Label>File</Form.Label>
+              {/* <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={docItem}
+                onChange={(e) => setImage(e.target.value)}
+              ></Form.Control> */}
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                type='file'
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <h1>Loading...</h1>}
+            </Form.Group>
 				<input
 					type='text'
 					placeholder='copies'
 					className="form-input mb-4"
                     name='noOfCopies'
                     value={noOfCopies}
-                    onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+                    onChange={(e) => setnoOfCopies(e.target.value)}
                     required
             	/>
 				<div class="row">
@@ -76,7 +149,7 @@ const CreateDocument = () => {
 							placeholder='Number Of pages'
                             name="noOfPages"
 							value={noOfPages}
-                            onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+                            onChange={(e) => setnoOfPages(e.target.value)}
 							className="form-input mb-4"
 							required
             			/>
@@ -87,7 +160,7 @@ const CreateDocument = () => {
 							placeholder='spiral bind'
 							name='isSpiralBind'
                             value={isSpiralBind}
-                            onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+                            onChange={(e) => setisSpiralBind(e.target.value)}
 							className="form-input mb-4"
 							required
             			/>
@@ -100,7 +173,7 @@ const CreateDocument = () => {
 							placeholder='colored'
 							name='isColored'
                             value={isColored}
-                            onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+                            onChange={(e) => setisColored(e.target.value)}
 							className="form-input mb-4"
 							required
             			/>
@@ -111,7 +184,7 @@ const CreateDocument = () => {
 							placeholder='payment'
 							name='paymentMethod'
                             value={paymentMethod}
-                            onChange={(e)=>{onChange(e.target.name,e.target.value)}}
+							onChange={(e) => setpaymentMethod(e.target.value)}
 							className="form-input mb-4"
 							required
             			/>

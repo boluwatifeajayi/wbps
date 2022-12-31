@@ -6,11 +6,13 @@ const documentSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 		ref: 'User'
-	  },
-	file: {
+	},
+	// the document
+	docItem: {
 		type: String,
 		required: true
 	},
+	
 	noOfCopies: {
 		type: Number,
 		required: true
