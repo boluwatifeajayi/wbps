@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {register, reset} from '../../features/userAuth/userAuthSlice'
 
@@ -47,10 +47,8 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if(password !== password2){
-      toast.error('password do not match')
-    }
-    else{
+    
+    
       const userData = {
         firstname,
 		lastname,
@@ -64,7 +62,7 @@ function Register() {
       dispatch(register(userData))
     }
 
-  }
+  
 
   if(isLoading){
     return <h1>Loading....</h1>
@@ -74,37 +72,77 @@ function Register() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
-           Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+     
 
-      <section className='form' onSubmit={onSubmit}>
-        <form>
-          <div className='form-group'>
+
+
+      <div className='container'>
+      <div className='row'>
+        <div className='col-md-7 hide img-down'>
+        <img src="https://source.wustl.edu/wp-content/uploads/2018/01/shutterstock_126952187.jpg" className="img-contain" alt="login"/>
+        </div>
+        <div className='col-md-5 downn'>
+        <div className="reg-container">
+      <div className="reg-wrapper">
+      <h3><b>Get Started</b></h3>
+          <p className='mt-4'>Please Create An account to continue</p>
+         
+          <hr/>
+       
+
+        <form className='form' onSubmit={onSubmit}>
+        <div className='row'>
+              <div className='col'>
+              <div className="form-group">
+                <input
+                  id="name"
+                  type="text"
+                  name="firstname"
+                  placeholder='First Name'
+                  onChange={onChange}
+                  className="form-input"
+                  style={{paddingLeft: 15,}}
+                  value={firstname}
+                  required
+                />
+              </div>
+              </div>
+              <div className='col'>
+              <div className="form-group">
+                <input
+                  id="name"
+                  type="text"
+                  name="lastname"
+                  onChange={onChange}
+                  value={lastname}
+                  style={{paddingLeft: 15,}}
+                  placeholder="Last Name"
+                  className="form-input"
+                  required
+                />
+             </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+            
             <input
-              type='text'
-              className='form-control'
-              id='firstname'
-              name='firstname'
-              value={firstname}
-              placeholder='Enter your firstname'
+              id="email"
+              type="email"
+              name="email"
               onChange={onChange}
-            
+              value={email}
+              style={{paddingLeft: 15,}}
+              className="form-input"
+              placeholder="Email"
+              required
             />
-			 <input
-              type='text'
-              className='form-control'
-              id='lastname'
-              name='lastname'
-              value={lastname}
-              placeholder='Enter your lastname'
-              onChange={onChange}
-            
-            />
-			 <input
+          </div>
+          
+          
+          <div className="form-group">
+           
+          <input
               type='text'
               className='form-control'
               id='matricNumber'
@@ -114,7 +152,10 @@ function Register() {
               onChange={onChange}
             
             />
-			 <input
+		
+          </div>
+          <div className="form-group">
+          <input
               type='text'
               className='form-control'
               id='program'
@@ -125,46 +166,45 @@ function Register() {
             
             />
           </div>
-          <div className='form-group'>
+          
+          <div className="form-group">
             <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='password'
+              id="password"
+              type="password"
+              name="password"
               value={password}
-              placeholder='Enter password'
+              placeholder="Password"
+              style={{paddingLeft: 15,}}
               onChange={onChange}
+              className="form-input"
+              required
+              minLength="6"
             />
           </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              id='password2'
-              name='password2'
-              value={password2}
-              placeholder='Confirm password'
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
-            </button>
-          </div>
+          
+          <button className="normal-btn mt-2 mb-4">
+              <b>
+				        {isLoading ? 'Loading...' : 'Register'}
+              </b> 
+          </button>
+         
         </form>
-      </section>
+
+        <span>Already have an account? </span>
+        <Link
+          to="/user/login"
+          className="secondary"
+          style={{ textDecoration: 'none' }}
+        >
+          Login
+        </Link>
+        <br/>
+        
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
     </>
   )
 }

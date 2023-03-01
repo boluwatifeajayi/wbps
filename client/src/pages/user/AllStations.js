@@ -28,25 +28,37 @@ function AllStations() {
 
 
   return (
-	<div>
-		 
-	<hr/>
-		<section classNameName='content'>
-        {stations.length > 0 ? (
-          <div className='cat-cards mt-4'> 
-            {stations.map((station) => (
-              <StationItem station={station}/> 
-            ))}
-          </div>
-        ) : (
-          <h3>No Documents</h3>
-        )}
+    <div>
+    <div className="job-page-search container main-content-area">
+<h1>Select A station To get started</h1>
+ </div>
+ <hr/>
+   <section classNameName='content'>
+       {stations.length > 0 ? (
+         <div className='cat-cards mt-4'> 
+           {stations.map((station) => (
+             <StationItem station={station}/> 
+           ))}
+         </div>
+       ) : (
+         <h3>No Stations</h3>
+       )}
 
-      </section>
+     </section>
 
-	</div>
+  
+
+ 
+
+    
+
+
+ </div>
 	
   )
 }
 
 export default AllStations
+
+
+

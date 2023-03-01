@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {login, reset} from '../../features/userAuth/userAuthSlice'
 
@@ -63,45 +63,82 @@ function Login() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
-         Login
-        </h1>
-        <p>Please login to your account</p>
-      </section>
+      <div className='container'>
+      <div className='row'>
+        <div className='col-md-7 hide img-down'>
+        <img src="https://s3.amazonaws.com/media.youthradio.org/wp-content/uploads/2020/08/21114957/Youngwomanarguesduringvideoconference.jpg" className="img-contain" alt="logine"/>
+        </div>
+        <div className='col-md-5 downn'>
+        <div className="reg-container">
+      <div className="reg-wrapper">
+      <h3><b>Login To Your account</b></h3>
+          <p className='mt-4'>Please Login to your <span className='pinkish'>student</span> account to continue</p>
+         
+          <hr/>
+       
 
-      <section className='form' onSubmit={onSubmit}>
-        <form>
-        
-          <div className='form-group'>
+        <form className='form' onSubmit={onSubmit}>
+        <div className='row'>
+             
+             
+            </div>
+
+            <div className="form-group">
+            
             <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
+              id="email"
+              type="email"
+              name="email"
+              onChange={onChange}
               value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
+              style={{paddingLeft: 15,}}
+              className="form-input"
+              placeholder="Email"
+              required
             />
           </div>
-          <div className='form-group'>
+          
+          
+         
+          <div className="form-group">
             <input
-              type='password'
-              className='form-control'
-              id='password'
-              name='password'
+              id="password"
+              type="password"
+              name="password"
               value={password}
-              placeholder='Enter password'
+              placeholder="Password"
+              style={{paddingLeft: 15,}}
               onChange={onChange}
+              className="form-input"
+              required
+              minLength="6"
             />
           </div>
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
-            </button>
-          </div>
+          
+          <button className="normal-btn mt-2 mb-4">
+              <b>
+				        {isLoading ? 'Loading...' : 'Login'}
+              </b> 
+          </button>
+         
         </form>
-      </section>
+
+        <span>Dont have an account? </span>
+        <Link
+          to="/user/register"
+          className="secondary"
+          style={{ textDecoration: 'none' }}
+        >
+          Register
+        </Link>
+        <br/>
+        
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+    
     </>
   )
 }

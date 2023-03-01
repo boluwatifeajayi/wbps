@@ -12,14 +12,14 @@ const CreateDocument = () => {
 	const navigate = useNavigate()
 	const { stationname } = useParams();
 	const [uploading, setUploading] = useState(false)
-	const [docItem, setDocItem] = useState("minidoc");
-	const [noOfCopies, setnoOfCopies] = useState(1);
-	const [noOfPages, setnoOfPages] = useState(1);
-	const [isSpiralBind, setisSpiralBind] = useState(false);
-	const [isColored, setisColored] = useState(false);
-	const [additionalInformation, setadditionalInformation] = useState('info');
+	const [docItem, setDocItem] = useState("");
+	const [noOfCopies, setnoOfCopies] = useState();
+	const [noOfPages, setnoOfPages] = useState();
+	const [isSpiralBind, setisSpiralBind] = useState();
+	const [isColored, setisColored] = useState();
+	const [additionalInformation, setadditionalInformation] = useState('');
 	const [status, setstatus] = useState('pending');
-	const [paymentMethod, setpaymentMethod] = useState('yippy');
+	const [paymentMethod, setpaymentMethod] = useState('cash on delivery');
 	const [thestation, setthestation] = useState(stationname);
 
     
@@ -83,30 +83,21 @@ const CreateDocument = () => {
 	}
      
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-	// 	const documentData = {
-	// 		file, noOfCopies, noOfPages, isSpiralBind, isColored, additionalInformation, thestation, paymentMethod
-	// 	}
-	// 	dispatch(createDocument(documentData)) 
-
-    //     navigate('/employer/internships')
-	// 	// console.log(typeof(stationname))
-    // }
+    
 
     
 
     return (
 
-        <div className="container2">
-             <Link to="/employer/internships">
+        <div className="container">
+             <Link to="/">
       <button className='btn btn-block  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> <i className='fa fa-arrow-left'></i>{" "}Back</button>
       </Link>
-            <h2 class="text-center">Create A New Internship</h2>
+            <h2 class="text-center">Submit Your Document</h2>
 		<hr/>
             <form onSubmit={submit}>
             <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-12">
 				<div className="form-group create-form">
 				{/* <input
 					type='file'
@@ -199,8 +190,8 @@ const CreateDocument = () => {
         <center>
         <input
           type='submit'
-          value='Create'
-          className='btn btn-danger btn-block mb-4 w-50'
+          value='Submit'
+          className='btn btn-primary btn-block mb-4 w-50'
         />
         </center>
         

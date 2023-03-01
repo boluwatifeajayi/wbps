@@ -93,12 +93,12 @@ const getAllDocuments = async (req, res) => {
 	  const allDocuments = await Document.find().sort({ updatedAt: -1 });
 	  res.status(200).json(allDocuments);
 	} catch (error) {
-	  res.status(404).json({ error: "No jobs available" });
+	  res.status(404).json({ error: "no docs available" });
 	}
   };
 
 const getSingleDocument = async (req, res) => {
-	try {
+	try { 
 	  const { documentid } = req.params;
 	  const currentDocument = await Document.findById(documentid);
 	  res.status(200).json(currentDocument);

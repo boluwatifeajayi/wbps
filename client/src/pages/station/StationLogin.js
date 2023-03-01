@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {loginStation, stationreset} from '../../features/stationAuth/stationAuthSlice'
 
@@ -25,7 +25,7 @@ function StationLogin() {
       toast.error(message)
     }
     if(isSuccess || station){
-      navigate('/station/dashboard')
+      navigate('/station/documents')
     }
 
     dispatch(stationreset())
@@ -61,17 +61,28 @@ function StationLogin() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
-       		Station Login
-        </h1>
-        <p>Please login to your an account</p>
-      </section>
+      <div className='container'>
+      <div className='row'>
+        <div className='col-md-7 hide img-down'>
+        <img src="https://s3.amazonaws.com/media.youthradio.org/wp-content/uploads/2020/08/21114957/Youngwomanarguesduringvideoconference.jpg" className="img-contain" alt="logine"/>
+        </div>
+        <div className='col-md-5 downn'>
+        <div className="reg-container">
+      <div className="reg-wrapper">
+      <h3><b>Login To Your account</b></h3>
+          <p className='mt-4'>Please login to your <span className='pinkish'>employer</span> account to continue</p>
+         
+          <hr/>
+       
 
-      <section className='form' onSubmit={onSubmit}>
-        <form>
-          
-          <div className='form-group'>
+        <form className='form' onSubmit={onSubmit}>
+        <div className='row'>
+             
+             
+            </div>
+
+            <div className="form-group">
+            
             <input
               type='stationEmail'
               className='form-control'
@@ -82,8 +93,11 @@ function StationLogin() {
               onChange={onChange}
             />
           </div>
-          <div className='form-group'>
-            <input
+          
+          
+         
+          <div className="form-group">
+          <input
               type='stationPassword'
               className='form-control'
               id='stationPassword'
@@ -94,13 +108,29 @@ function StationLogin() {
             />
           </div>
           
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
-            </button>
-          </div>
+          <button className="normal-btn mt-2 mb-4">
+              <b>
+				        {isLoading ? 'Loading...' : 'Login'}
+              </b> 
+          </button>
+         
         </form>
-      </section>
+
+        <span>Don't have an account? </span>
+        <Link
+          to="/employer/register"
+          className="secondary"
+          style={{ textDecoration: 'none' }}
+        >
+          Register
+        </Link>
+        <br/>
+        
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
     </>
   )
 }

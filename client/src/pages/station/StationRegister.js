@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {registerStation, stationreset} from '../../features/stationAuth/stationAuthSlice'
 
@@ -11,11 +11,11 @@ function StationRegister() {
     stationName: '',
     stationEmail: '',
     stationPassword: '',
-    stationPassword2: '',
+    
 	services: [],
-	pricePerPageColor: 0,
-	pricePerPageNoColor: 0,
-	priceSpiralBind: 0
+	pricePerPageColor: '',
+	pricePerPageNoColor: '',
+	priceSpiralBind: ''
   })
 
   const { stationName, stationEmail, stationPassword, stationPassword2, services, pricePerPageNoColor, pricePerPageColor, priceSpiralBind } = formData
@@ -46,24 +46,21 @@ function StationRegister() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if(stationPassword !== stationPassword2){
-      toast.error('stationPassword do not match')
-    }
-    else{
+   
       const stationData = {
         stationName,
         stationEmail,
         stationPassword,
-		services,
-		pricePerPageColor,
-		pricePerPageNoColor,
-		priceSpiralBind
+		    services,
+		    pricePerPageColor,
+		    pricePerPageNoColor,
+		  priceSpiralBind
       }
 
       dispatch(registerStation(stationData))
     }
 
-  }
+  
 
   if(isLoading){
     return <h2>LOading...</h2>
@@ -72,18 +69,26 @@ function StationRegister() {
   
 
   return (
-    <>
-      <section className='heading'>
-        <h1>
-           Station Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+    <>  
+      <div className='container'>
+      <div className='row'>
+        <div className='col-md-7 hide img-down'>
+        <img src="https://source.wustl.edu/wp-content/uploads/2018/01/shutterstock_126952187.jpg" className="img-contain" alt="login"/>
+        </div>
+        <div className='col-md-5 downn'>
+        <div className="reg-container">
+      <div className="reg-wrapper">
+      <h3><b>Get Started</b></h3>
+          <p className='mt-4'>Please Create A <span className='pinkish'>employer</span> account to continue</p>
+         
+          <hr/>
+       
 
-      <section className='form' onSubmit={onSubmit}>
-        <form>
-          <div className='form-group'>
-            <input
+        <form className='form' onSubmit={onSubmit}>
+        <div className='row'>
+              <div className='col'>
+              <div className="form-group">
+              <input
               type='text'
               className='form-control'
               id='stationName'
@@ -93,7 +98,11 @@ function StationRegister() {
               onChange={onChange}
             
             />
-			 <input
+              </div>
+              </div>
+              <div className='col'>
+              <div className="form-group">
+              <input
               type='text'
               className='form-control'
               id='services'
@@ -103,7 +112,13 @@ function StationRegister() {
               onChange={onChange}
             
             />
-			 <input
+             </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+            
+            <input
               type='text'
               className='form-control'
               id='pricePerPageColor'
@@ -113,7 +128,12 @@ function StationRegister() {
               onChange={onChange}
             
             />
-			 <input
+          </div>
+          
+          
+          <div className="form-group">
+           
+          <input
               type='text'
               className='form-control'
               id='pricePerPageNoColor'
@@ -123,7 +143,11 @@ function StationRegister() {
               onChange={onChange}
             
             />
-			 <input
+          </div>
+
+		  <div className="form-group">
+            
+      <input
               type='text'
               className='form-control'
               id='priceSpiralBind'
@@ -134,8 +158,10 @@ function StationRegister() {
             
             />
           </div>
-          <div className='form-group'>
-            <input
+
+		  <div className="form-group">
+            
+      <input
               type='stationEmail'
               className='form-control'
               id='stationEmail'
@@ -145,8 +171,9 @@ function StationRegister() {
               onChange={onChange}
             />
           </div>
-          <div className='form-group'>
-            <input
+          
+          <div className="form-group">
+          <input
               type='stationPassword'
               className='form-control'
               id='stationPassword'
@@ -156,24 +183,30 @@ function StationRegister() {
               onChange={onChange}
             />
           </div>
-          <div className='form-group'>
-            <input
-              type='stationPassword'
-              className='form-control'
-              id='stationPassword2'
-              name='stationPassword2'
-              value={stationPassword2}
-              placeholder='Confirm stationPassword'
-              onChange={onChange}
-            />
-          </div>
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
-            </button>
-          </div>
+          
+          <button className="normal-btn mt-2 mb-4">
+              <b>
+				        {isLoading ? 'Loading...' : 'Register'}
+              </b> 
+          </button>
+         
         </form>
-      </section>
+
+        <span>Already have an account? </span>
+        <Link
+          to="/station/login"
+          className="secondary"
+          style={{ textDecoration: 'none' }}
+        >
+          Login
+        </Link>
+        <br/>
+        
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
     </>
   )
 }

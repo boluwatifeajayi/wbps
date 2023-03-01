@@ -9,16 +9,21 @@ function Document() {
   const dispatch = useDispatch()
   const { id } = useParams();
 
-  const [formData, setFormData] = useState({
-    message: '', 
-  })
+  // const [message, setMessage] = useState("")
 
 
-  const {message} = formData
+  
 
   const {singleDocument, isLoading, isError, isSuccess, docmessage} = useSelector((state) => state.document)
 
   const { docItem, paymentMethod} = singleDocument
+
+  const [formData, setFormData] = useState({
+    message: '',
+  })
+
+
+  const {message} = formData
 
 
   const handleClick = () => {
@@ -40,7 +45,7 @@ function Document() {
   };
 
   const onButtonClick = () => {
-    // using Java Script method to get PDF file
+    // using JavaScript method to get PDF file
     
     fetch(docItem)
       .then(res => res.blob())
@@ -55,25 +60,58 @@ function Document() {
 }
 
 
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
+
+
+  
+const onChange = (e) => {
+  setFormData((prevState) => ({
+    ...prevState,
+    [e.target.name]: e.target.value
+  }))
+}
+
+const onSubmit = (e) => {
+    e.preventDefault();
+    const messageData = {
+      message,
   }
 
-  const onSubmit = (e) => {
-      e.preventDefault();
+  
+  dispatch(MessageDocument({documentId: id, messageData})) 
+  // console.log(jobData)
+ 
+  }
+
+ 
+
+    function waiting(){
       const messageData = {
-     	 message,
-   	  }
-
-	
-
+        message: 'waiting',
+    }
+  
     
     dispatch(MessageDocument({documentId: id, messageData})) 
-    console.log(message)
-    alert("you have applied")
+    // console.log(jobData)
+    }
+
+    function printing(){
+      const messageData = {
+        message: 'printing',
+    }
+  
+    
+    dispatch(MessageDocument({documentId: id, messageData})) 
+    // console.log(jobData)
+    }
+
+    function ready(){
+      const messageData = {
+        message: 'ready',
+    }
+  
+    
+    dispatch(MessageDocument({documentId: id, messageData})) 
+    // console.log(jobData)
     }
 
   useEffect(() => {
@@ -96,12 +134,12 @@ function Document() {
 
   return (
 	<div className='container'>
-    <Link to="/internships">
+    <Link to="/station/documents">
       <button className='btn btn-block  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> <i className='fa fa-arrow-left'></i>{" "}Back To Interships</button>
       </Link>
           
    <div className='row gx-5 mx-1'>
-        <div className='col-md-7 border-b document-d mb-4'>
+        <div className='col-md-7  document-d mb-4'>
        
         <h2 className='mt-4'><b>{docItem}</b></h2>
         <button onClick={onButtonClick}>
@@ -111,24 +149,20 @@ function Document() {
             
             <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}{paymentMethod}</b></h5> 
 
-           
-            
-
-
-          
             <hr/>
-           
-           
-            
-          
+             
         </div>
-        <div className='col-md-4 border-b apply'>
-        <form onSubmit={onSubmit}>
+        <div className='col-md-4  apply'>
+        <div>
               <h4 className='mt-4 mb-2'>
                <b>Message Student</b>
               </h4>
               <hr/>
               <b className='pinkish mb-4'>Message</b>
+              <button onClick={waiting}>Waiting</button>
+              <button onClick={printing}>Printing</button>
+              <button onClick={ready}>Ready</button>
+              {/* <form onSubmit={onSubmit}>
               <input
                 type='text'
                 placeholder='This is your chance to convince the company to hire you'
@@ -138,18 +172,14 @@ function Document() {
                 className="form-control mb-4"
                 rows={4}
                 required
-              />
+              /> 
+              <input type='submit' value="done"/>
+              </form> */}
+             
               
               
             
-              <div>
-                <input
-                  type='submit'
-                  value='submit'
-                  className='normal-btn mb-4'
-                />
-              </div> 
-    </form>       
+    </div>       
         </div>
       </div>
   </div>

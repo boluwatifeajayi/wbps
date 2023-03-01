@@ -74,6 +74,7 @@ const MessageDocument = async (messageData, documentId, token) => {
 	}
 	
 	const response = await axios.post(`/api/documents/${documentId}/message`, messageData, config)
+	console.log(response.data)
 	return response.data	
 
 

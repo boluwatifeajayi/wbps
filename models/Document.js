@@ -63,7 +63,7 @@ const documentSchema = mongoose.Schema({
 		  },
 		  message: {
 			type: String,
-			default: 'pending'
+			default: ''
 			
 		  },
 		  appliedAt: {
