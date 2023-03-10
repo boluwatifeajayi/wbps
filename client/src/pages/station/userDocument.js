@@ -11,12 +11,9 @@ function Document() {
 
   // const [message, setMessage] = useState("")
 
-
-  
-
   const {singleDocument, isLoading, isError, isSuccess, docmessage} = useSelector((state) => state.document)
 
-  const { docItem, paymentMethod} = singleDocument
+  const { docItem, paymentMethod, theUser, noOfCopies, noOfPages, isSpiralBind, isColored, station} = singleDocument
 
   const [formData, setFormData] = useState({
     message: '',
@@ -26,23 +23,7 @@ function Document() {
   const {message} = formData
 
 
-  const handleClick = () => {
-    // this is the URL of the PDF file
-    const pdfUrl = 'https://example.com/document.pdf';
-
-    // create an "a" element and set its "download" attribute
-    // to the file name of the PDF and its "href" attribute to the URL of the PDF
-    const link = document.createElement('a');
-    link.setAttribute('download', 'document.pdf');
-    link.setAttribute('href', pdfUrl);
-
-    // append the "a" element to the body and click it to trigger the download
-    document.body.appendChild(link);
-    link.click();
-
-    // remove the "a" element from the body
-    document.body.removeChild(link);
-  };
+  
 
   const onButtonClick = () => {
     // using JavaScript method to get PDF file
@@ -59,9 +40,20 @@ function Document() {
     
 }
 
+useEffect(() => {
 
+  if (isError) {
+    console.log(docmessage)
+  } 
 
+  
+  dispatch(GetSingleDocument(id))
+    
 
+  return () => {
+    dispatch(reset())
+  }
+}, [])
   
 const onChange = (e) => {
   setFormData((prevState) => ({
@@ -83,14 +75,14 @@ const onSubmit = (e) => {
   }
 
  
-
     function waiting(){
       const messageData = {
-        message: 'waiting',
+        message: 'could not print document',
     }
   
     
     dispatch(MessageDocument({documentId: id, messageData})) 
+      navigate('/station/documents')
     // console.log(jobData)
     }
 
@@ -99,7 +91,7 @@ const onSubmit = (e) => {
         message: 'printing',
     }
   
-    
+    alert("successful")
     dispatch(MessageDocument({documentId: id, messageData})) 
     // console.log(jobData)
     }
@@ -111,23 +103,12 @@ const onSubmit = (e) => {
   
     
     dispatch(MessageDocument({documentId: id, messageData})) 
+    alert("successful")
+    navigate('/station/documents')
     // console.log(jobData)
     }
 
-  useEffect(() => {
-
-    if (isError) {
-      console.log(docmessage)
-    } 
-
-    
-    dispatch(GetSingleDocument(id))
-      
   
-    return () => {
-      dispatch(reset())
-    }
-  }, [])
 
 
   
@@ -139,47 +120,44 @@ const onSubmit = (e) => {
       </Link>
           
    <div className='row gx-5 mx-1'>
-        <div className='col-md-7  document-d mb-4'>
+        <div className='col-md-7  border-b document-d'>
        
-        <h2 className='mt-4'><b>{docItem}</b></h2>
-        <button onClick={onButtonClick}>
-                    Download PDF
-                </button>
+        {/* <h2 className='mt-4'><b>{docItem}</b></h2> */}
+       
+        <h4>Student Name: {theUser?.firstname}</h4>
+        <hr/>
+        <br/>
+        <p><b className='pinkish'>Payment Method: </b>{paymentMethod}</p> 
+
+        <p className='mt-4'><b className='pinkish'>Color: </b>{isColored}</p>
+
+        <p className='mt-4'><b className='pinkish'>Spiral Bind: </b>{isSpiralBind}</p>
+
+        <p className='mt-4'><b className='pinkish'>Number Of Pages: </b>{noOfPages}</p>
+
+        <p className='mt-4'><b className='pinkish'>Number Of Copies: </b>{noOfCopies}</p>
+        
+        <button className='normal-btn mt-4 w-50' onClick={onButtonClick}>
+          Download Document
+        </button>
                
             
-            <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}{paymentMethod}</b></h5> 
+           
 
-            <hr/>
+           
              
         </div>
-        <div className='col-md-4  apply'>
+        <div className='col-md-4 ml-4  apply'>
         <div>
               <h4 className='mt-4 mb-2'>
-               <b>Message Student</b>
+               <b>Notify Student</b>
               </h4>
               <hr/>
-              <b className='pinkish mb-4'>Message</b>
-              <button onClick={waiting}>Waiting</button>
-              <button onClick={printing}>Printing</button>
-              <button onClick={ready}>Ready</button>
-              {/* <form onSubmit={onSubmit}>
-              <input
-                type='text'
-                placeholder='This is your chance to convince the company to hire you'
-                name='message'
-                value={message}
-                onChange={onChange}
-                className="form-control mb-4"
-                rows={4}
-                required
-              /> 
-              <input type='submit' value="done"/>
-              </form> */}
-             
-              
-              
-            
-    </div>       
+
+                <button className="btn btn-md bg-success text-white mr-3" onClick={ready}>Document Ready</button> 
+                <button className="btn btn-md bg-danger text-white" onClick={waiting}>Unable To Print Doc</button>
+                 
+        </div>       
         </div>
       </div>
   </div>

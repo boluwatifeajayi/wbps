@@ -16,7 +16,7 @@ function Station() {
 
   const {singleStation, isLoading, isError, isSuccess, message} = useSelector((state) => state.stationauth)
 
-  const { stationName, pricePerPageColor, pricePerPageNoColor, stationEmail, priceSpiralBind, services} = singleStation
+  const { stationName, _id, pricePerPageColor, pricePerPageNoColor, stationEmail, priceSpiralBind, services} = singleStation
 
 
   
@@ -80,7 +80,7 @@ function Station() {
             {/* <b className='pinkish bigger'>Aditional Information</b>
             <p>{additionalInformation}</p> */}
 
-<Link to={'/user/' + stationname + '/create'}>
+<Link to={`/user/${stationname}/${_id}/create`}>
 				<button className="learn-button mt-4">Print Document Now</button>
 			</Link>
 		

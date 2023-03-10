@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDocument } from "../../features/document/documentSlice";
+import { GetSingleStation, stationreset } from "../../features/stationAuth/stationAuthSlice";
+import { GetSingleDocument } from "../../features/document/documentSlice";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
@@ -10,8 +11,11 @@ const CreateDocument = () => {
 	const [progress, setProgress] = useState(0);
 	const [progressShow, setProgressShow] = useState(false)
 	const navigate = useNavigate()
-	const { stationname } = useParams();
-	const [uploading, setUploading] = useState(false)
+	const { stationname, stationid } = useParams();
+
+	const {singleStation, isLoading, isError, isSuccess, message} = useSelector((state) => state.stationauth)
+
+	
 	const [docItem, setDocItem] = useState("");
 	const [noOfCopies, setnoOfCopies] = useState();
 	const [noOfPages, setnoOfPages] = useState();
@@ -19,39 +23,53 @@ const CreateDocument = () => {
 	const [isColored, setisColored] = useState();
 	const [additionalInformation, setadditionalInformation] = useState('');
 	const [status, setstatus] = useState('pending');
+	const [total, settotal] = useState(0);
 	const [paymentMethod, setpaymentMethod] = useState('cash on delivery');
 	const [thestation, setthestation] = useState(stationname);
+
+	const [selectedFile, setSelectedFile] = useState(null);
+	const [uploading, setUploading] = useState(false)
 
     
 	const { user } = useSelector((state) => state.userauth)
 
  	const token = user.token
 	
-
+	 
 	
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+
+		if (isError) {
+		  console.log(message)
+		} 
+	
+		
+		dispatch(GetSingleStation(stationid))
+		  
+	  
+		return () => {
+		  dispatch(stationreset())
+		}
+	  }, [dispatch, navigate, message, isError, GetSingleStation])
 
 	
 		const headers = {
 		  Authorization: `Bearer ${token}`,
 		 
 		}
-	 
-		// const headers2 = {
-		// 	Authorization: `Bearer ${token}`,
-		//   }
-	   
-	
-
-	  
-
-	 
-
 
 	  const uploadFileHandler = async (e) => {
+
+		
 		
 		const file = e.target.files[0]
+   		setSelectedFile(file);
+   
+
+
 		const formData = new FormData()
 		formData.append('docItem', file)
 		setUploading(true)
@@ -80,7 +98,27 @@ const CreateDocument = () => {
             
             console.error("error >>> ", error);
           });
+		  navigate('/user/documents')
 	}
+
+	
+
+
+	const updateTotal = () => {
+		let newTotal = 0;
+		const pricePerPage = isColored ? singleStation.pricePerPageColor : singleStation.pricePerPageNoColor;
+		const priceSpiralBind = isSpiralBind ? singleStation.priceSpiralBind : 0;
+		const totalPages = parseInt(noOfPages) || 0;
+		const totalCopies = parseInt(noOfCopies) || 0;
+		
+		newTotal += pricePerPage * totalPages * totalCopies;
+		newTotal += priceSpiralBind * totalCopies;
+		
+		settotal(newTotal);
+		console.log(newTotal);
+	  };
+	  
+
      
 
     
@@ -89,100 +127,117 @@ const CreateDocument = () => {
 
     return (
 
-        <div className="container">
+        <div className="container reg">
              <Link to="/">
       <button className='btn btn-block  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> <i className='fa fa-arrow-left'></i>{" "}Back</button>
       </Link>
-            <h2 class="text-center">Submit Your Document</h2>
+            <h2 class="text-center">Upload Your Document</h2>
 		<hr/>
+		
             <form onSubmit={submit}>
             <div class="row mt-4">
             <div class="col-md-12">
 				<div className="form-group create-form">
-				{/* <input
-					type='file'
-					placeholder='file'
-					name='file'
-					onChange={handleFileChange} 
-					className="form-input mb-4"
-					required
-            	/> */}
 				<Form.Group controlId='image'>
-              <Form.Label>File</Form.Label>
-              {/* <Form.Control
-                type='text'
-                placeholder='Enter image url'
-                value={docItem}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control> */}
+              {/* <Form.Label>File</Form.Label> */}
+              
               <Form.File
                 id='image-file'
-                label='Choose File'
+                label={selectedFile ? selectedFile.name : 'Choose File'}
                 type='file'
                 custom
                 onChange={uploadFileHandler}
               ></Form.File>
-              {uploading && <h1>Loading...</h1>}
+              {uploading && <p>Loading...</p>}
             </Form.Group>
+				
+				
+				<div class="row">
+					<div class="col-md">
+					
+					<select
+						name='isColored'
+						value={isColored}
+						onChange={(e) => {
+							setisColored(e.target.value);
+							updateTotal();
+						}}
+						className='form-input mb-4'
+						required
+						>
+						<option value=''>--Select Color--</option>
+						<option value='yes'>No (+{singleStation.pricePerPageNoColor} per page)</option>
+						<option value='no'>Yes (+{singleStation.pricePerPageColor} per page)</option>
+                	</select>
+
+					</div>
+					<div class="col-md">
+					<select
+                  name='isSpiralBind'
+						value={isSpiralBind}
+						onChange={(e) => {
+							setisSpiralBind(e.target.value);
+							updateTotal();
+						}}
+						className='form-input mb-4'
+						required
+						>
+						<option value=''>-- Spiral bind --</option>
+						<option value='yes'>Yes (+{singleStation.priceSpiralBind})</option>
+						<option value='no'>No</option>
+                </select>
+						
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md">
+					<input
+						type='number'
+						placeholder='Number Of pages'
+						name='noOfPages'
+						value={noOfPages}
+						onChange={(e) => {
+							setnoOfPages(e.target.value);
+							updateTotal();
+						
+						}}
+						className='form-input mb-4'
+						required
+			  		/>
+					</div>
+					<div class="col-md">
+						
+						
+						<select
+						name="paymentMethod"
+						value={paymentMethod}
+						onChange={(e) => setpaymentMethod(e.target.value)}
+						className="form-input mb-4"
+						required
+						>
+						<option value="">Select payment method</option>
+						<option value="Online account">Online account</option>
+						<option value="Payment On Pick Up">Payment On Pick Up</option>
+					</select>
+
+					</div>
+				</div>
+				
 				<input
-					type='text'
-					placeholder='copies'
-					className="form-input mb-4"
-                    name='noOfCopies'
-                    value={noOfCopies}
-                    onChange={(e) => setnoOfCopies(e.target.value)}
-                    required
-            	/>
-				<div class="row">
-					<div class="col-md">
-						<input
-							type='text'
-							placeholder='Number Of pages'
-                            name="noOfPages"
-							value={noOfPages}
-                            onChange={(e) => setnoOfPages(e.target.value)}
-							className="form-input mb-4"
-							required
-            			/>
-					</div>
-					<div class="col-md">
-						<input
-							type='text'
-							placeholder='spiral bind'
-							name='isSpiralBind'
-                            value={isSpiralBind}
-                            onChange={(e) => setisSpiralBind(e.target.value)}
-							className="form-input mb-4"
-							required
-            			/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md">
-						<input
-							type='text'
-							placeholder='colored'
-							name='isColored'
-                            value={isColored}
-                            onChange={(e) => setisColored(e.target.value)}
-							className="form-input mb-4"
-							required
-            			/>
-					</div>
-					<div class="col-md">
-						<input
-							type='text'
-							placeholder='payment'
-							name='paymentMethod'
-                            value={paymentMethod}
-							onChange={(e) => setpaymentMethod(e.target.value)}
-							className="form-input mb-4"
-							required
-            			/>
-					</div>
-				</div>
-				
-				
+					type='number'
+					placeholder='Number Of Copies'
+					name='noOfCopies'
+					value={noOfCopies}
+					onChange={(e) => {
+					setnoOfCopies(e.target.value);
+					updateTotal();
+					}}
+					className='form-input mb-4'
+					required
+			 	 />
+
+				<input type='text' placeholder='Total' name='total' value={total} readOnly className='form-input mb-4' />
 				</div>
 		    </div>
 			</div> 
@@ -191,7 +246,7 @@ const CreateDocument = () => {
         <input
           type='submit'
           value='Submit'
-          className='btn btn-primary btn-block mb-4 w-50'
+          className='btn normal-btn'
         />
         </center>
         
@@ -204,3 +259,4 @@ const CreateDocument = () => {
 };
 
 export default CreateDocument;
+

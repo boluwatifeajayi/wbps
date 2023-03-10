@@ -27,7 +27,7 @@ function userDocItem({station}) {
 		</div>
 		
 		<Link to={`/station/${station.stationName}/${station._id}`}>
-			<button className="learn-button mt-4">View Details</button>
+			<button className="learn-button mt-4">Learn More</button>
 		</Link>
 		
 	  </div>

@@ -5,6 +5,7 @@ import { getDocuments, reset } from '../../features/document/documentSlice';
 import DocumentItem from '../../components/app/documentItem';
 import userDocItem from '../../components/app/userDocItem';
 import axios from 'axios';
+import { Badge } from 'reactstrap';
 
 function Documents() {
   const navigate = useNavigate();
@@ -49,52 +50,66 @@ function Documents() {
 
   console.log(data);
 
+  if(isLoading){
+    return <h4 className='loading text center'>Loading...</h4>
+  }
+
   return (
     <div>
-      <hr />
-      <section className='content container'>
-        <h1>Uploaded Documents</h1>
+        <section className='content container'>
+  <h2 className='mt-4'>Welcome {user?.firstname} {user?.lastname} || {user?.matricNumber}</h2>
+  <b className='mt-3'>{user?.program}</b>
+  <hr />
+  <h4 className='mt-4 mb-4'>Your Uploaded Documents</h4>
+  <div className='table-responsive mt-4 mb-4'>
+    <table className='table table-striped table-bordered'>
+      <thead className='thead-dark'>
+        <tr>
+          <th scope='col'>#</th>
+          <th scope='col'>Document Item</th>
+          <th scope='col'>The Station</th>
+          <th scope='col'>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+  {data.length > 0 ? (
+    data.map((object, index) => (
+      <tr key={object.id}>
+        <td>{index + 1}</td>
+        <td>{object.docItem}</td>
+        <td>{object.thestation}</td>
+        {object.station.length === 0 ? (
+          <td>
+            <span className="badge badge-warning">Pending</span>
+          </td>
+        ) : (
+          object.station.map((mss) => (
+            <td key={mss.id} className="sizing">
+              <span
+                className={
+                  mss.message.toLowerCase() === 'ready'
+                    ? 'badge badge-success'
+                    : 'badge badge-warning'
+                }
+              >
+                {mss.message}{' '}
+                {mss.message.toLowerCase() === 'ready' && 'for pick up'}
+              </span>
+            </td>
+          ))
+        )}
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan='4'>Not yet uploaded any documents</td>
+    </tr>
+  )}
+</tbody>
 
-        <div className='table-responsive'>
-          <table className='table table-striped table-bordered'>
-            <thead className='thead-dark'>
-              <tr>
-                <th scope='col'>Document Item</th>
-                <th scope='col'>The Station</th>
-                <th scope='col'>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-            {data.map((object) => (
-  <tr key={object.id}>
-    <td>{object.docItem}</td>
-    <td>{object.thestation}</td>
-    {object.station.map((mss) => (
-      <td key={mss.id}>{mss.message}</td>
-    ))}
-  </tr>
-))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* <ul>
-          {data.map((object) => (
-            <li key={object.id}>
-              <p>{object.docItem}</p>
-              <p>{object.thestation}</p>
-              <p>{object.status}</p>
-              <ul>
-                {object.station.map((item) => (
-                  <li key={item.message}>
-                    <p>{item.message}</p>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul> */}
-      </section>
+    </table>
+  </div>
+</section>
     </div>
   );
 }

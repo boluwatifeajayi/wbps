@@ -31,7 +31,7 @@ function Register() {
       toast.error(message)
     }
     if(isSuccess || user){
-      navigate('/')
+      navigate('/user/stations')
     }
 
     dispatch(reset())
@@ -76,16 +76,13 @@ function Register() {
 
 
 
-      <div className='container'>
-      <div className='row'>
-        <div className='col-md-7 hide img-down'>
-        <img src="https://source.wustl.edu/wp-content/uploads/2018/01/shutterstock_126952187.jpg" className="img-contain" alt="login"/>
-        </div>
-        <div className='col-md-5 downn'>
+      <div className='container reg'>
+      <div className='rowi'>
+        <div>
         <div className="reg-container">
       <div className="reg-wrapper">
-      <h3><b>Get Started</b></h3>
-          <p className='mt-4'>Please Create An account to continue</p>
+      <h2><b>Create An Account</b></h2>
+          <p className='mt-4'>Please Create An account to get started</p>
          
           <hr/>
        
@@ -148,7 +145,7 @@ function Register() {
               id='matricNumber'
               name='matricNumber'
               value={matricNumber}
-              placeholder='Enter your matricNumber'
+              placeholder='Matriculation Number'
               onChange={onChange}
             
             />
@@ -161,7 +158,7 @@ function Register() {
               id='program'
               name='program'
               value={program}
-              placeholder='Enter your program'
+              placeholder='Program'
               onChange={onChange}
             
             />

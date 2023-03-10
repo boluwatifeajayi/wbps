@@ -13,7 +13,7 @@ function Documents() {
 
   const { station } = useSelector((state) => state.stationauth);
 
-  const stname = station.stationName;
+  
 
   useEffect(() => {
     if (isError) {
@@ -27,34 +27,39 @@ function Documents() {
     };
   }, []);
 
+  const stname = station?.stationName;
+
   function dateFormatter(dateItem) {
     return formatDistanceToNow(new Date(dateItem), { addSuffix: true });
   }
 
   return (
     <div>
-      <hr />
-      <section className='content'>
+    
+      <section className='content container'>
+        <h2 className='mt-4'>Students Uploads</h2>
+        <hr />
         {documents.length > 0 ? (
           <div className='table-responsive'>
-            <table className='table table-striped table-bordered mt-4'>
+            <table className='table table-striped table-bordered'>
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Uploaded</th>
-                  <th></th>
+                  <th><h5>Name</h5></th>
+                  
+                  <th><h5>Time</h5></th>
+                  <th><h5>Status</h5></th>
+                  <th><h5>Action</h5></th>
                 </tr>
               </thead>
               <tbody>
                 {documents.map((document) => (
                   <tr key={document._id}>
                     <td>{document.theUser.firstname}</td>
-                    <td>decription</td>
                     <td>{dateFormatter(document.createdAt.toString())}</td>
+                    <td><b>{document.station.length > 0 ? document.station[0].message : "pending"}</b></td>
                     <td>
                       <Link to={`/station/document/${document._id}`}>
-                        <button className='btn btn-primary btn-sm'>Learn More</button>
+                        <button className='normal-btn w-50'>Learn More</button>
                       </Link>
                     </td>
                   </tr>

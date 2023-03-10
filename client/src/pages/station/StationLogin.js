@@ -60,69 +60,73 @@ function StationLogin() {
   
 
   return (
-    <>
-      <div className='container'>
-      <div className='row'>
-        <div className='col-md-7 hide img-down'>
-        <img src="https://s3.amazonaws.com/media.youthradio.org/wp-content/uploads/2020/08/21114957/Youngwomanarguesduringvideoconference.jpg" className="img-contain" alt="logine"/>
-        </div>
-        <div className='col-md-5 downn'>
+    <>  
+      <div className='container reg'>
+      <div className='rowi'>
+       
+        <div>
         <div className="reg-container">
       <div className="reg-wrapper">
-      <h3><b>Login To Your account</b></h3>
-          <p className='mt-4'>Please login to your <span className='pinkish'>employer</span> account to continue</p>
+      <h3><b>Login To Vendor Account</b></h3>
          
-          <hr/>
+       <hr/>
        
 
         <form className='form' onSubmit={onSubmit}>
         <div className='row'>
-             
-             
+              <div className='col'>
+              
+              </div>
             </div>
 
-            <div className="form-group">
+           
+          
+          
+        
+       
+
+		         
+   
+		  <div className="form-group">
             
-            <input
-              type='stationEmail'
+      <input
+              type='text'
               className='form-control'
               id='stationEmail'
               name='stationEmail'
               value={stationEmail}
-              placeholder='Enter your stationEmail'
+              placeholder='Enter your Email'
               onChange={onChange}
             />
           </div>
           
-          
-         
           <div className="form-group">
           <input
-              type='stationPassword'
+              type='password'
               className='form-control'
               id='stationPassword'
               name='stationPassword'
               value={stationPassword}
-              placeholder='Enter stationPassword'
+              placeholder='Enter Password'
               onChange={onChange}
             />
           </div>
           
           <button className="normal-btn mt-2 mb-4">
               <b>
-				        {isLoading ? 'Loading...' : 'Login'}
+				        {isLoading ? 'Loading...' : 'Register'}
               </b> 
           </button>
          
         </form>
 
-        <span>Don't have an account? </span>
+        <span>Already have an account? </span>
         <Link
-          to="/employer/register"
+          to="/station/login"
           className="secondary"
           style={{ textDecoration: 'none' }}
         >
-          Register
+          Login
         </Link>
         <br/>
         

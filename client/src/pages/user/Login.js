@@ -27,7 +27,7 @@ function Login() {
       toast.error(message)
     }
     if(isSuccess || user){
-      navigate('/')
+      navigate('/user/stations')
     }
 
     dispatch(reset())
@@ -63,83 +63,84 @@ function Login() {
 
   return (
     <>
-      <div className='container'>
-      <div className='row'>
-        <div className='col-md-7 hide img-down'>
-        <img src="https://s3.amazonaws.com/media.youthradio.org/wp-content/uploads/2020/08/21114957/Youngwomanarguesduringvideoconference.jpg" className="img-contain" alt="logine"/>
-        </div>
-        <div className='col-md-5 downn'>
-        <div className="reg-container">
-      <div className="reg-wrapper">
-      <h3><b>Login To Your account</b></h3>
-          <p className='mt-4'>Please Login to your <span className='pinkish'>student</span> account to continue</p>
-         
-          <hr/>
+     
+
+
+
+    <div className='container reg'>
+    <div className='rowi'>
+      <div>
+      <div className="reg-container">
+    <div className="reg-wrapper">
+    <h2><b>Welcome Back</b></h2>
+        <p className='mt-4'>Please login to your account to continue</p>
        
+        <hr/>
+     
 
-        <form className='form' onSubmit={onSubmit}>
-        <div className='row'>
-             
-             
-            </div>
-
-            <div className="form-group">
+      <form className='form' onSubmit={onSubmit}>
+      <div className='row'>
             
-            <input
-              id="email"
-              type="email"
-              name="email"
-              onChange={onChange}
-              value={email}
-              style={{paddingLeft: 15,}}
-              className="form-input"
-              placeholder="Email"
-              required
-            />
           </div>
-          
-          
-         
-          <div className="form-group">
-            <input
-              id="password"
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Password"
-              style={{paddingLeft: 15,}}
-              onChange={onChange}
-              className="form-input"
-              required
-              minLength="6"
-            />
-          </div>
-          
-          <button className="normal-btn mt-2 mb-4">
-              <b>
-				        {isLoading ? 'Loading...' : 'Login'}
-              </b> 
-          </button>
-         
-        </form>
 
-        <span>Dont have an account? </span>
-        <Link
-          to="/user/register"
-          className="secondary"
-          style={{ textDecoration: 'none' }}
-        >
-          Register
-        </Link>
-        <br/>
-        
-      </div>
-    </div>
+          <div className="form-group">
+          
+          <input
+            id="email"
+            type="email"
+            name="email"
+            onChange={onChange}
+            value={email}
+            style={{paddingLeft: 15,}}
+            className="form-input"
+            placeholder="Email"
+            required
+          />
         </div>
+        
+        
+        
+        
+        
+        <div className="form-group">
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            style={{paddingLeft: 15,}}
+            onChange={onChange}
+            className="form-input"
+            required
+            minLength="6"
+          />
+        </div>
+        
+        <button className="normal-btn mt-2 mb-4">
+            <b>
+              {isLoading ? 'Loading...' : 'Login'}
+            </b> 
+        </button>
+       
+      </form>
+
+      <span>Don't have an account? </span>
+      <Link
+        to="/user/register"
+        className="secondary"
+        style={{ textDecoration: 'none' }}
+      >
+        Register
+      </Link>
+      <br/>
+      
+    </div>
+  </div>
       </div>
     </div>
-    
-    </>
+  </div>
+  </>
   )
 }
 

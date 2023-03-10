@@ -31,6 +31,14 @@ const stationSchema = mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	online: {
+		type: String,
+		default: "Active Now"
+	},
+	offline: {
+		type: String,
+		default: "Offline"
+	}
 },
 {
 	timestamps: true

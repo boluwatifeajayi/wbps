@@ -25,15 +25,17 @@ function AllStations() {
     }
   }, [])
 
-
+  if(isLoading){
+    return <h4 className='text center mt-4 loading'>Loading...</h4>
+  }
 
   return (
     <div>
     <div className="job-page-search container main-content-area">
-<h1>Select A station To get started</h1>
+<h1 className='mt-4'>Printing Vendors At Covenant University</h1>
  </div>
  <hr/>
-   <section classNameName='content'>
+   <section classNameName='content mt-4'>
        {stations.length > 0 ? (
          <div className='cat-cards mt-4'> 
            {stations.map((station) => (
@@ -41,7 +43,7 @@ function AllStations() {
            ))}
          </div>
        ) : (
-         <h3>No Stations</h3>
+         <h5 className='no-st'>No Stations</h5>
        )}
 
      </section>

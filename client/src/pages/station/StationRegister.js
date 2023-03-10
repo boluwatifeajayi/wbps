@@ -70,18 +70,15 @@ function StationRegister() {
 
   return (
     <>  
-      <div className='container'>
-      <div className='row'>
-        <div className='col-md-7 hide img-down'>
-        <img src="https://source.wustl.edu/wp-content/uploads/2018/01/shutterstock_126952187.jpg" className="img-contain" alt="login"/>
-        </div>
-        <div className='col-md-5 downn'>
+      <div className='container reg'>
+      <div className='rowi'>
+       
+        <div>
         <div className="reg-container">
       <div className="reg-wrapper">
-      <h3><b>Get Started</b></h3>
-          <p className='mt-4'>Please Create A <span className='pinkish'>employer</span> account to continue</p>
+      <h3><b>Create Vendor Account</b></h3>
          
-          <hr/>
+       <hr/>
        
 
         <form className='form' onSubmit={onSubmit}>

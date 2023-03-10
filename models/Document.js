@@ -22,12 +22,11 @@ const documentSchema = mongoose.Schema({
 		required: true
 	},
 	isSpiralBind: {
-		type: Boolean,
+		type: String,
 		required: true
 	},
 	isColored: {
-		type: Boolean,
-		default: false,
+		type: String,
 		required: true
 	},
 	additionalInformation: {
@@ -63,7 +62,7 @@ const documentSchema = mongoose.Schema({
 		  },
 		  message: {
 			type: String,
-			default: ''
+			default: 'Pending'
 			
 		  },
 		  appliedAt: {
