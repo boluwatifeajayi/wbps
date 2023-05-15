@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
 		type: String,
 		default: ""
 	},
+
 	matricNumber: {
 		type: String,
 		default: ""
@@ -27,6 +28,14 @@ const userSchema = mongoose.Schema({
 		type: String,
 		default: ""
 	},
+	// hall: {
+	// 	type: String,
+	// 	default: ""
+	// },
+	// roomNo: {
+	// 	type: String,
+	// 	default: ""
+	// },
 	accBalance: {
 		type: Number,
 		default: 0

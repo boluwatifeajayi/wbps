@@ -11,19 +11,20 @@ function userDocItem({station}) {
 			  <b className="primary">{job.role}</b>
 		  </div> */}
 		</div>
-		<h3 className='station-name-card'>{station.stationName}</h3>
+		<h2 className='station-name-card'>{station.stationName}</h2>
 	   
 		<div className="spacer">
 		  <div className="intersnhip-box">
-			  <p><b className="primary"> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Status: Active</b></p>
+			  <p><b className="primary">Status: Active</b></p>
 		  </div>
 		
 		</div>
 		<div className="spacer">
 		  <div className="intersnhip-box">
-			  <p><b> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Location: cst 3rd floor on the building continous steps</b></p>
+			  <p><b> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Location:  cst second floor, hall 205</b></p>
 		  </div>
-		
+
+		 
 		</div>
 		
 		<Link to={`/station/${station.stationName}/${station._id}`}>

@@ -23,7 +23,7 @@ const protect = asyncHandler(async (req, res, next) => {
       req.user = await User.findById(decoded.userid).select('-password')
       
       // Get admin from the token
-    //   req.admin = await Admin.findById(decoded.adminId).select('-adminPassword')
+      //   req.admin = await Admin.findById(decoded.adminId).select('-adminPassword')
 
       next()
     } catch (error) {

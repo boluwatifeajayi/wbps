@@ -13,29 +13,26 @@ function Document() {
 
   const {singleDocument, isLoading, isError, isSuccess, docmessage} = useSelector((state) => state.document)
 
-  const { docItem, paymentMethod, theUser, noOfCopies, noOfPages, isSpiralBind, isColored, station} = singleDocument
+  const { docItem,docName, paymentMethod, theUser, noOfCopies, noOfPages, isSpiralBind, isColored, station} = singleDocument
 
   const [formData, setFormData] = useState({
     message: '',
   })
 
-
   const {message} = formData
-
-
-  
 
   const onButtonClick = () => {
     // using JavaScript method to get PDF file
-    
     fetch(docItem)
       .then(res => res.blob())
       .then(blob => {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.setAttribute("download", docItem);
+        link.setAttribute("download", docName);
         document.body.appendChild(link);
         link.click();
+        console.log(docItem)
+
       })
     
 }
@@ -122,7 +119,7 @@ const onSubmit = (e) => {
    <div className='row gx-5 mx-1'>
         <div className='col-md-7  border-b document-d'>
        
-        {/* <h2 className='mt-4'><b>{docItem}</b></h2> */}
+        <h2 className='mt-4'><b>{docName}</b></h2>
        
         <h4>Student Name: {theUser?.firstname}</h4>
         <hr/>

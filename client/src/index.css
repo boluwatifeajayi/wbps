@@ -28,19 +28,16 @@ h1, h2, h3, h4, h5, h5, h6{
 }
 
 .App-header {
-  background-color: #282c34;
+
   min-height: 100lq;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #333;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
 .down{
   margin-top: 130px;
@@ -65,7 +62,7 @@ a:hover{
 }
 
 .form-input{
-  border-radius: 0px;
+  border-radius: 9px;
   border: 1px solid #d9dce2;
   height: 46px;
   padding: 10px 30px;
@@ -73,43 +70,43 @@ a:hover{
 }
 
 .pinkish{
-  color: #6906b6;
+  color: #0667b6;
 }
 
 .normal-btn{
   color: #fff;
-  background-color: #6906b6;
+  background-color: #0667b6;
   width: 100%;
   padding: 10px 30px;
   border: none;
-  border-radius: 0px;
+  border-radius: 9px;
 }
 
 .normal-btn-main{
   color: #fff;
-  background-color: #6906b6;
+  background-color: #0667b6;
   font-size: 18px;
   width: 25%;
   padding: 13px 36px;
   border: none;
   font-weight: bold;
-  border-radius: 0px;
+  border-radius: 9px;
   margin-top: 30px;
 }
 
 .normal-btn-short{
   color: #fff;
-  background-color: #6906b6;
+  background-color: #0667b6;
   padding: 10px 30px;
   border: none;
-  border-radius: 0px;
+  border-radius: 9px;
 }
 
 .img-contain{
   width: 95%;
   height: 470px;
   margin-right: 50px;
-  border-radius: 0px;
+  border-radius: 9px;
 }
 
 .container-custom{
@@ -118,7 +115,7 @@ a:hover{
 
 .border-b{
   border: 1px solid #d9dce2;
-  border-radius: 0px;
+  border-radius: 9px;
   padding: 15px 30px;
   
 }
@@ -136,7 +133,7 @@ a:hover{
 }
 
 .secondary{
-  color: #6906b6;
+  color: #0667b6;
   font-weight: bold;
 }
 
@@ -195,12 +192,12 @@ a:hover{
 }
 
 .small-normal-btn{
-  color: #6906b6;
-  /* background-color: #6906b6; */
+  color: #0667b6;
+  /* background-color: #0667b6; */
   padding: 5px 20px;
   font-weight: bold;
   border: none;
-  border-radius: 0px;
+  border-radius: 9px;
   font-size: 14px;
 }
 
@@ -237,7 +234,7 @@ img {
   background-color: var(--orange);
   padding: 1em 2em;
   border: none;
-  border-radius: 0px;
+  border-radius: 9px;
   cursor: pointer;
   transition: var(--smooth);
 
@@ -264,7 +261,7 @@ img {
     background-color: var(--orange);
     padding: 0.5em 1.5em;
     border: none;
-    border-radius: 0px;
+    border-radius: 9px;
     cursor: pointer;
     transition: var(--smooth);
   
@@ -309,7 +306,7 @@ h1, h2, h3, h4, h5, h5, h6{
   color: #444;
 }
 .primary{
-  color: #6906b6;
+  color: #0667b6;
 }
 p {
   line-height: 25px;
@@ -323,8 +320,8 @@ p {
 }
 
 :root {
-  --orange: #6906b6;
-  --green: #2f094f;
+  --orange: #0667b6;
+  --green: #1043eb;
   --gray: #4b4f51;
   --pink: #f8f8f8;
   --light-pink: #fff9f9;
@@ -347,6 +344,40 @@ p {
 .reg{
   width: 30%;
   border: 1px solid #c4cacd;
+  border-radius: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 60px;
+}
+.regic{
+  width: 40%;
+  border: 1px solid #c4cacd;
+  border-radius: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 60px;
+}
+
+.regic2{
+  width: 40%;
+  border: 1px solid #c4cacd;
+  border-radius: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 60px;
+
+
+}
+.regg{
+  width: 50%;
+  border: 1px solid #c4cacd;
+  border-radius: 8px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
@@ -360,7 +391,7 @@ p {
 li, a{
   font-weight: 500;
   font-size: 16px;
-  color: #fff;
+ 
   text-decoration: none;
 }
 
@@ -394,7 +425,7 @@ header{
 }
 
 .nav_link li a:hover{
-  color: #6906b6;
+  color: #0667b6;
 }
 
 @media (max-width: 900px) {
@@ -408,7 +439,7 @@ header{
 .banner-area{
   width:100%;
   height:100vh;
-  background-image: url(https://images6.alphacoders.com/625/625643.jpg);
+  background-image: url(https://pbs.twimg.com/media/EXUO20IWsAAklxl.jpg);
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -502,21 +533,21 @@ header{
 }
 
 .form-box .search-btn{
-  background-color: #6906b6;
+  background-color: #0667b6;
   color: #fff;
   height: 50px;
   padding: 10px 30px;
-  border: 1px solid #6906b6;
+  border: 1px solid #0667b6;
   font-size: 17px;
   font-weight: bold;
 }
 
 .intern-btn{
-  background-color: #6906b6;
+  background-color: #0667b6;
   color: #fff;
   height: 70px;
   padding: 10px 30px;
-  border: 1px solid #6906b6;
+  border: 1px solid #0667b6;
   font-size: 19px;
   font-weight: bold;
 }
@@ -543,12 +574,12 @@ header{
   
   .intern-btn{
     margin-top: 20px;
-    background-color: #6906b6;
+    background-color: #0667b6;
     color: #fff;
     height: 50px;
     width: 100%;
     padding: 13px 30px;
-    border: 1px solid #6906b6;
+    border: 1px solid #0667b6;
     font-size: 16px;
     font-weight: bold;
   }
@@ -559,7 +590,7 @@ header{
 }
 
 .under-text p{
-  color: #6906b6;
+  color: #0667b6;
   font-weight: bold;
   font-size: 13px;
 }
@@ -595,7 +626,7 @@ header{
 
 .my-custom-card{
    
-    border-radius: 0px;
+    border-radius: 9px;
     padding: 3.5rem 2rem;
     border: 1px solid #dcdfdf;
     background-color: ghostwhite;
@@ -605,12 +636,12 @@ header{
 }
 
 .my-custom-card-job{
-  border-radius: 0px;
+  border-radius: 9px;
   padding: 2rem;
   border: 1px solid #dcdfdf;
   background-color: white;
   cursor: pointer;
-  border-bottom: 5px solid #6906b6;
+  border-bottom: 5px solid #0667b6;
   height: 340px;
   /* position: relative; */
 }
@@ -622,13 +653,13 @@ header{
 
 .my-custom-card button{
   border: none;
-  color: #6906b6;
+  color: #0667b6;
   font-weight: bold;
   background-color: transparent;
   cursor: pointer;
   background-color: white;
   padding: 5px 10px;
-  border-radius: 0px;
+  border-radius: 9px;
   /* position: absolute; */
 }
 
@@ -639,7 +670,7 @@ header{
   background-color: var(--orange);
   padding: 1em 2em;
   border: none;
-  border-radius: 0px;
+  border-radius: 9px;
   margin-top: 50px;
   cursor: pointer;
   transition: var(--smooth);
@@ -647,7 +678,7 @@ header{
 
 /* .my-custom-card-job button{
   border: none;
-  color: #6906b6;
+  color: #0667b6;
   font-weight: bold;
   background-color: transparent;
   cursor: pointer;
@@ -658,7 +689,7 @@ header{
 
 
 .my-custom-card:hover{
-  background-color: #6906b6;
+  background-color: #0667b6;
   color: white;
   
 }
@@ -711,12 +742,12 @@ header{
   justify-content: center;
   text-align: center;
   align-items: center;
-  color: #6906b6;
+  color: #0667b6;
   font-weight: bold;
-  border: 1px solid #6906b6;
+  border: 1px solid #0667b6;
   padding: 10px 25px;
   background-color: transparent;
-  border-radius: 0px;
+  border-radius: 9px;
  
 }
 
@@ -775,7 +806,7 @@ header{
 	position: absolute;
 	left:0;
 	bottom: -10px;
-	background-color: #6906b6;
+	background-color: #0667b6;
 	height: 2px;
 	box-sizing: border-box;
 	width: 50px;
@@ -919,3 +950,118 @@ header{
   margin: 1.75rem auto;
   
 }
+
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.process-section,
+.why-use-section,
+.get-started-section {
+  background-color: #f5f5f5;
+  padding: 50px 0;
+}
+
+.process-section ul,
+.why-use-section ul,
+.get-started-section ol {
+  font-size: 1.2rem;
+  list-style: disc;
+  margin-left: 30px;
+  padding-left: 20px;
+}
+
+.get-started-section ol {
+  list-style: decimal;
+}
+
+@media only screen and (max-width: 767px) {
+ 
+  .section-heading {
+    font-size: 1.5rem;
+  }
+
+  .process-section ul,
+  .why-use-section ul,
+  .get-started-section ol {
+    font-size: 1rem;
+  }
+}
+
+
+.sidebar {
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar .nav-link {
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #495057;
+}
+
+.app-container {
+  margin-left: 200px;
+}
+
+.sidebar {
+  flex: 0 0 auto;
+  width: 300px;
+  background-color: #282c34;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 130px;
+
+}
+
+.content {
+  flex: 1 1 auto;
+  padding-left: 250px; /* Adjust this value to match the width of the sidebar */
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.side-item{
+  font-size: 18px;
+}
+
+
+.push-right{
+  margin-left: 350px;
+  margin-right: 90px;
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* .logo-text {
+  font-size: 14px;
+} */
+
+.logo-image {
+  height: 70px; /* Adjust the height as needed */
+  width: 100%;
+  margin-left: 5px; /* Add some margin to separate the text and image */
+}
+
+/* .regila{
+  
+} */

@@ -8,17 +8,22 @@ import {registerStation, stationreset} from '../../features/stationAuth/stationA
 
 function StationRegister() {
   const [formData, setFormData] = useState({
-    stationName: '',
-    stationEmail: '',
-    stationPassword: '',
-    
-	services: [],
-	pricePerPageColor: '',
-	pricePerPageNoColor: '',
-	priceSpiralBind: ''
+          stationName: '',
+          stationEmail: '',
+          stationPassword: '',
+          services: [],
+          pricePerPageColor: '',
+          pricePerPageNoColor: '',
+          priceSpiralBind: '',
+          place: '',
+          accountDetails: {
+            accountNumber: '',
+            bank: '',
+            accountName: ''
+          }
   })
 
-  const { stationName, stationEmail, stationPassword, stationPassword2, services, pricePerPageNoColor, pricePerPageColor, priceSpiralBind } = formData
+  const { stationName, stationEmail, stationPassword, services, pricePerPageNoColor, pricePerPageColor, place, priceSpiralBind, accountDetails: { accountNumber, bank, accountName } } = formData
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -37,40 +42,61 @@ function StationRegister() {
   }, [station, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => {
+      if (name.startsWith('accountDetails.')) {
+        return {
+          ...prev,
+          accountDetails: {
+            ...prev.accountDetails,
+            [name.split('.')[1]]: value
+          }
+        };
+      } else {
+        return {
+          ...prev,
+          [name]: value
+        };
+      }
+    });
+  };
+  
 
   const onSubmit = (e) => {
     e.preventDefault()
 
    
-      const stationData = {
-        stationName,
-        stationEmail,
-        stationPassword,
-		    services,
-		    pricePerPageColor,
-		    pricePerPageNoColor,
-		  priceSpiralBind
+    const stationData = {
+      stationName,
+      stationEmail,
+      stationPassword,
+      services,
+      pricePerPageColor,
+      pricePerPageNoColor,
+      priceSpiralBind,
+      place,
+      accountDetails: {
+        accountNumber,
+        bank,
+        accountName
       }
-
-      dispatch(registerStation(stationData))
+    }
+    
+    dispatch(registerStation(stationData))
+    
     }
 
   
 
   if(isLoading){
-    return <h2>LOading...</h2>
+    return <h2>Loading...</h2>
   }
 
   
 
   return (
     <>  
-      <div className='container reg'>
+      <div className='container regg'>
       <div className='rowi'>
        
         <div>
@@ -82,8 +108,11 @@ function StationRegister() {
        
 
         <form className='form' onSubmit={onSubmit}>
-        <div className='row'>
-              <div className='col'>
+        <div>
+
+        <h5>Information: </h5>
+             <hr/>
+             
               <div className="form-group">
               <input
               type='text'
@@ -91,15 +120,40 @@ function StationRegister() {
               id='stationName'
               name='stationName'
               value={stationName}
-              placeholder='Enter your stationName'
+              placeholder='Enter Name Of Station'
               onChange={onChange}
             
             />
               </div>
-              </div>
-              <div className='col'>
+
               <div className="form-group">
-              <input
+            
+            <input
+                    type='stationEmail'
+                    className='form-control'
+                    id='stationEmail'
+                    name='stationEmail'
+                    value={stationEmail}
+                    placeholder='Enter your station email'
+                    onChange={onChange}
+                  />
+                </div>
+
+                <div className="form-group">
+            
+                <input 
+                    type='text'
+                    className='form-control'
+                    id='stationEmail'
+                    name='place'
+                    value={place}
+                    placeholder='Enter Location'
+                    onChange={onChange}
+                  />
+                </div>
+             
+              <div className="form-group">
+              <textarea
               type='text'
               className='form-control'
               id='services'
@@ -108,9 +162,14 @@ function StationRegister() {
               placeholder='Enter your services'
               onChange={onChange}
             
-            />
+            ></textarea>
              </div>
-              </div>
+
+          
+             <h5>Pricing (N): </h5>
+             <hr/>
+             
+            
             </div>
 
             <div className="form-group">
@@ -121,7 +180,7 @@ function StationRegister() {
               id='pricePerPageColor'
               name='pricePerPageColor'
               value={pricePerPageColor}
-              placeholder='Enter your color price'
+              placeholder='Enter the price per page for colored documents '
               onChange={onChange}
             
             />
@@ -136,7 +195,7 @@ function StationRegister() {
               id='pricePerPageNoColor'
               name='pricePerPageNoColor'
               value={pricePerPageNoColor}
-              placeholder='Enter your station no color'
+              placeholder='Enter the price per page for non-colored documents '
               onChange={onChange}
             
             />
@@ -150,33 +209,64 @@ function StationRegister() {
               id='priceSpiralBind'
               name='priceSpiralBind'
               value={priceSpiralBind}
-              placeholder='Enter your priceSpiralBind'
+              placeholder='Enter the price For Spiral Bind'
               onChange={onChange}
             
             />
           </div>
+          <h5>Account Details: </h5>
+             <hr/>
 
-		  <div className="form-group">
-            
-      <input
-              type='stationEmail'
+             <div className="form-group">
+             <input
+              type='text'
               className='form-control'
-              id='stationEmail'
-              name='stationEmail'
-              value={stationEmail}
-              placeholder='Enter your stationEmail'
+              id='accountNumber'
+              name='accountDetails.accountNumber'
+              value={formData.accountDetails.accountNumber}
+              placeholder='Enter account number'
               onChange={onChange}
             />
-          </div>
+
+</div>
+
+<div className="form-group">
+  <input
+    type='text'
+    className='form-control'
+    id='bank'
+    name='accountDetails.bank'
+    value={formData.accountDetails.bank}
+    placeholder='Enter bank'
+    onChange={onChange}
+  />
+</div>
+
+<div className="form-group">
+  <input
+    type='text'
+    className='form-control'
+    id='accountName'
+    name='accountDetails.accountName'
+    value={formData.accountDetails.accountName}
+    placeholder='Enter account name'
+    onChange={onChange}
+  />
+</div>
+
+             
+          <h5>Security: </h5>
+             <hr/>
+
           
           <div className="form-group">
           <input
-              type='stationPassword'
+              type='password'
               className='form-control'
               id='stationPassword'
               name='stationPassword'
               value={stationPassword}
-              placeholder='Enter stationPassword'
+              placeholder='Enter Secure Password'
               onChange={onChange}
             />
           </div>

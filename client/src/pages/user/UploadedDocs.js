@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Badge } from 'reactstrap';
 import SideBar from '../../components/layout/SideBar';
 
-function Documents() {
+function UploadedDocs() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
@@ -115,4 +115,4 @@ function Documents() {
   );
 }
 
-export default Documents;
+export default UploadedDocs;

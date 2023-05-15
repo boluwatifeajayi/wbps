@@ -3,13 +3,33 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {getStations, stationreset} from '../../features/stationAuth/stationAuthSlice'
 import StationItem from '../../components/app/stationItem'
+import SideBar from '../../components/layout/SideBar'
 
 function AllStations() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-
   const {stations, isLoading, isError, isSuccess, message} = useSelector((state) => state.stationauth)
+
+  const {user} = useSelector((state) => state.userauth)
+
+  useEffect(() => {
+    if (user === null) {
+      navigate('/user/login');
+    }
+
+    if (isError) {
+      console.log(message);
+    }
+
+   
+
+    return () => {
+      
+      dispatch(stationreset());
+    };
+  }, []);
+
   
   useEffect(() => {
 
@@ -18,7 +38,6 @@ function AllStations() {
       console.log(message)
     } 
 
-   
     dispatch(getStations())
     return () => {
       dispatch(stationreset())
@@ -31,11 +50,15 @@ function AllStations() {
 
   return (
     <div>
-    <div className="job-page-search container main-content-area">
-<h1 className='mt-4'>Printing Vendors At Covenant University</h1>
- </div>
+         <div className="sidebar">
+            <SideBar student={user}/>
+          </div>
+          
+    <div className='push-right'>
+<h3 className='mt-4'>Printing Stations</h3>
+
  <hr/>
-   <section classNameName='content mt-4'>
+   <section classNameName='mt-4'>
        {stations.length > 0 ? (
          <div className='cat-cards mt-4'> 
            {stations.map((station) => (
@@ -48,6 +71,8 @@ function AllStations() {
 
      </section>
 
+
+ </div>
   
 
  

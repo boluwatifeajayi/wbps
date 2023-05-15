@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../../features/userAuth/userAuthSlice';
 import { logoutStation, stationreset } from '../../features/stationAuth/stationAuthSlice';
+import logo from '../../media/logo.png'
 
 
 function Header() {
@@ -46,41 +47,19 @@ function Header() {
 
   return (
     <div>
-      <header className="sticky-top navy">
-        <Link to='/'>
-          <h5 className='logo'>
-            early<span className='primary'>office</span>
-          </h5>
-        </Link>
+     <header className="sticky-top" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)" }}>
+     <Link to='/' className='logo'>
+          <img className='logo-image' src={logo} alt="logo" />
+  <h5>
+    <span className='logo-text'>CU<span>PRINT</span></span>
+  </h5>
+</Link>
 
-        <nav>
-          <ul className='nav_link'>
-            {station ? (
-              ''
-            ) : (
-              <span>
-                <li>
-                  <Link to='/internships'>Internships</Link>
-                </li>
-                <li>
-                  <Link to='/internships/categories'>Categories</Link>
-                </li>
-                <li>
-                  <Link to='/internships/locations'>Locations</Link>
-                </li>
-                <li>
-                  <Link to='/companies/all'>Companies</Link>
-                </li>
-                <li>
-                  <Link to='/blog'>Blog</Link>
-                </li>
-              </span>
-            )}
-          </ul>
-        </nav>
+
+        {/*  */}
 
         <div>
-          {user || station ? (
+          {/* {user || station ? (
             <div className='prof'>
               <Link className='text-primary' to={station ? '/station/documents' : '/user/documents'}>
                 <i className='fas disp fa-user mr-2'></i>
@@ -95,16 +74,17 @@ function Header() {
                 <b className='primary ml-2 disp'>Logout</b>
               </button>
             </div>
-          ) : (
+          ) : ( */}
             <>
-              <Link to='/user/login' className='cta-outline'>
+              {/* <Link to='/user/login' className='cta-outline'>
                 <button className='log-btn'>Login</button>
               </Link>
               <Link to='/user/register' className='cta-small'>
               <button className='reg-btn'>Register</button>
-		</Link>
+		</Link> */}
+    <p>Upload Your Docs and Print</p>
 	</>
-	)}
+
 	</div>
  </header>
 </div>

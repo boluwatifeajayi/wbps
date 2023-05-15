@@ -10,10 +10,6 @@ function Document() {
   const { id } = useParams();
   const [status, setStatus] = useState([])
 
-
- 
-
-
  
   const {singleDocument, isLoading, isError, isSuccess, docmessage} = useSelector((state) => state.document)
 
@@ -58,28 +54,15 @@ function Document() {
        
         <h2 className='mt-4'><b>{file}</b></h2>
             
-            <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}{paymentMethod}</b></h5> 
+        <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}{paymentMethod}</b></h5> 
            
-            
-			{/* {station.length > 0 ? (
-          <div className='cat-cards mt-4'> 
-            {station.map((stud) => (
-              <p>{stud.reasonToBeHired}</p>
-            ))}
-          </div>
-        ) : (
-        <h3>No Jobs</h3>
-        )} */}
+        
 		<button onClick={viewStudents} className="btn btn-primary mt-4 mb-4">View Student Applications</button>
       
       {status.map((station) => (
         <div key={station._id}>
           <b>Status</b>
           <p>{station.message}</p>
-
-         
-            
-         
         </div>
       ))} 
             <hr/>

@@ -1,0 +1,116 @@
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Boluwatife Ajayi is a software developer with a focus on building intuitive, user-friendly websites and web applications. Explore my projects, skills, articles and contact him to collaborate on your next project.">
+
+  <title>Boluwatife Ajayi Portfolio</title>
+    <style>
+      .navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.navbar-logo img {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.navbar-account a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navbar-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navbar-links a {
+    margin: 10px 0;
+  }
+  
+  .navbar-toggle {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navbar-account {
+    margin-top: 20px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <h3>Hello</h3>
+  </div>
+  <div class="navbar-links" style="color:green">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="navbar-account">
+    <a href="#">Sign In</a>
+    <a href="#">Sign Up</a>
+  </div>
+  <div class="navbar-toggle">
+    <span>k</span>
+    <span>j</span>
+    <span>j</spann
+  </div>
+</nav>
+
+
+    <script type="text/javascript">
+      
+      
+      const navbarToggle = document.querySelector('.navbar-toggle');
+const navbarLinks = document.querySelector('.navbar-links');
+
+navbarToggle.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active');
+});
+
+    </script>
+  </body>
+</html>

@@ -5,14 +5,11 @@ import { toast } from 'react-toastify'
 import {login, reset} from '../../features/userAuth/userAuthSlice'
 
 
-
 function Login() {
 
   const [formData, setFormData] = useState({
-   
     email: '',
     password: '',
-   
   })
 
   const { email, password } = formData
@@ -55,7 +52,7 @@ function Login() {
   
 
   if(isLoading){
-    return <h1>Loading..</h1>
+    return <h1 className='loading'>Loading....</h1>
   }
 
 
@@ -63,16 +60,12 @@ function Login() {
 
   return (
     <>
-     
-
-
-
     <div className='container reg'>
     <div className='rowi'>
       <div>
       <div className="reg-container">
     <div className="reg-wrapper">
-    <h2><b>Welcome Back</b></h2>
+    <h2><b>Sign In</b></h2>
         <p className='mt-4'>Please login to your account to continue</p>
        
         <hr/>

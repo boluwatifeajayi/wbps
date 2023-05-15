@@ -3,47 +3,66 @@ const Schema = mongoose.Schema
 
 const stationSchema = mongoose.Schema({
 	stationEmail: {
-		type: String,
-		required: [true, 'Please add an email'],
-		unique: [true, 'station already exsists']
+	  type: String,
+	  required: [true, 'Please add an email'],
+	  unique: [true, 'Station already exists']
 	},
 	stationPassword: {
-		type: String,
-		required: [true, 'Please add a password']
+	  type: String,
+	  required: [true, 'Please add a password']
 	},
 	stationName: {
-		type: String,
-		default: ""
+	  type: String,
+	  default: ""
 	},
-	services: {
-		type: Array,
-		default: []
+	// services: {
+	//   type: String,
+	// },
+	location: {
+		type: String,
 	},
 	pricePerPageColor: {
-		type: Number,
-		default: 0
+	  type: Number,
+	  default: 0
 	},
 	pricePerPageNoColor: {
-		type: Number,
-		default: 0
+	  type: Number,
+	  default: 0
 	},
 	priceSpiralBind: {
-		type: Number,
-		default: 0
+	  type: Number,
+	  default: 0
 	},
 	online: {
-		type: String,
-		default: "Active Now"
+	  type: Boolean,
+	  default: false
 	},
-	offline: {
+	lastActiveAt: {
+	  type: Date,
+	  default: Date.now
+	},
+	place: {
 		type: String,
-		default: "Offline"
+		default: String
+	},
+	accountDetails: {
+	  accountNumber: {
+		type: String,
+		default: ""
+	  },
+	  bank: {
+		type: String,
+		default: ""
+	  },
+	  accountName: {
+		type: String,
+		default: ""
+	  }
 	}
-},
-{
+  }, {
 	timestamps: true
-}
-
-)
+  });
+  
+  
 
 module.exports = mongoose.model("station", stationSchema)

@@ -15,34 +15,47 @@ import Station from './pages/user/Station';
 import DocumentTrack from './pages/user/DocumentTrack';
 import Home from './pages/Home'
 import Header from './components/layout/Header';
+import SideBar from './components/layout/SideBar';
+import UploadedDocs from './pages/user/UploadedDocs';
+
 
 
 function App() {
+ 
   return (
     <>
-    <Router>
-      <Header/>
-      <div>
-       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/user/stations' element={<AllStations/>}/>
-        <Route path='/user/register' element={<Register/>}/>
-        <Route path='/user/login' element={<Login/>}/>
-        <Route path='/station/register' element={<StationRegister/>}/>
-        <Route path='/station/login' element={<StationLogin/>}/>
-        <Route path='/user/:stationname/:stationid/create/' element={<CreateDocument/>}/>
-        <Route path='/user/documents' element={<AllDocuments/>}/>
-        <Route path='/station/documents' element={<UserDocuments/>}/>
-        <Route path='/station/document/:id' element={<UserDocument/>}/>
-        <Route path='/stations' element={<AllStations/>}/>
-        <Route path='/station/:stationname/:id' element={<Station/>}/>
-        <Route path='/user/document/:id' element={<DocumentTrack/>}/>
-
-       </Routes>
-      </div>
-    </Router>
-    <ToastContainer/>
+      <Router>
+        <Header></Header>
+        <div>
      
+          <div>
+            {/* <Header /> */}
+            <div>
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/stations" element={<AllStations/>}/>
+                <Route path="/user/stations" element={<AllStations />} />
+                <Route path="/user/register" element={<Register />} />
+                <Route path="/user/login" element={<Login />} />
+                <Route path="/station/register" element={<StationRegister />} />
+                <Route path="/station/login" element={<StationLogin />} />
+                <Route
+                  path="/user/:stationname/:stationid/create/"
+                  element={<CreateDocument />}
+                />
+                <Route path="/user/documents" element={<AllDocuments />} />
+                <Route path="/user/uploaded" element={<UploadedDocs/>} />
+                <Route path="/station/documents" element={<UserDocuments />} />
+                <Route path="/station/document/:id" element={<UserDocument />} />
+                <Route path="/stations" element={<AllStations />} />
+                <Route path="/station/:stationname/:id" element={<Station />} />
+                <Route path="/user/document/:id" element={<DocumentTrack />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </Router>
+      <ToastContainer />
     </>
   );
 }
