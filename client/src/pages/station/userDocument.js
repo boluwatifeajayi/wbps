@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {GetSingleDocument, reset} from '../../features/document/documentSlice'
 import {MessageDocument} from '../../features/document/documentSlice'
+import StationSide from '../../components/layout/StationSide'
 
 function Document() {
   const navigate = useNavigate()
@@ -73,6 +74,8 @@ const onSubmit = (e) => {
 
  
     function waiting(){
+      const confirmed = window.confirm('Are you sure you want to set document to failed ?');
+      if (confirmed) {
       const messageData = {
         message: 'could not print document',
     }
@@ -82,6 +85,7 @@ const onSubmit = (e) => {
       navigate('/station/documents')
     // console.log(jobData)
     }
+  }
 
     function printing(){
       const messageData = {
@@ -93,17 +97,21 @@ const onSubmit = (e) => {
     // console.log(jobData)
     }
 
-    function ready(){
-      const messageData = {
-        message: 'ready',
-    }
-  
+    function ready() {
+      const confirmed = window.confirm('Are you sure you want to set document to ready?');
     
-    dispatch(MessageDocument({documentId: id, messageData})) 
-    alert("successful")
-    navigate('/station/documents')
-    // console.log(jobData)
+      if (confirmed) {
+        const messageData = {
+          message: 'ready',
+        };
+    
+        dispatch(MessageDocument({ documentId: id, messageData }));
+        alert('Successful');
+        navigate('/station/documents');
+        // console.log(jobData)
+      }
     }
+    
 
   
 
@@ -111,28 +119,34 @@ const onSubmit = (e) => {
   
 
   return (
-	<div className='container'>
+  <div>
+     <StationSide student={station}/>
+    <div className='push-right'>
     <Link to="/station/documents">
-      <button className='btn btn-block  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> <i className='fa fa-arrow-left'></i>{" "}Back To Interships</button>
+      <button className='btn btn-block  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> <i className='fa fa-arrow-left'></i>{" "}Back To Jobs</button>
       </Link>
           
    <div className='row gx-5 mx-1'>
         <div className='col-md-7  border-b document-d'>
        
-        <h2 className='mt-4'><b>{docName}</b></h2>
+        {/* <h2 className='mt-4'><b>{docName}</b></h2> */}
        
-        <h4>Student Name: {theUser?.firstname}</h4>
+        <h2 className="mb-4">Student: {theUser?.firstname} {theUser?.lastname}</h2>
+        <h5>Matric Number: {theUser?.matricNumber}</h5>
         <hr/>
         <br/>
+        <div className='items-text'>
         <p><b className='pinkish'>Payment Method: </b>{paymentMethod}</p> 
 
-        <p className='mt-4'><b className='pinkish'>Color: </b>{isColored}</p>
+<p className='mt-4'><b className='pinkish'>Color: </b>{isColored}</p>
 
-        <p className='mt-4'><b className='pinkish'>Spiral Bind: </b>{isSpiralBind}</p>
+<p className='mt-4'><b className='pinkish'>Spiral Bind: </b>{isSpiralBind}</p>
 
-        <p className='mt-4'><b className='pinkish'>Number Of Pages: </b>{noOfPages}</p>
+<p className='mt-4'><b className='pinkish'>Number Of Pages: </b>{noOfPages}</p>
 
-        <p className='mt-4'><b className='pinkish'>Number Of Copies: </b>{noOfCopies}</p>
+<p className='mt-4'><b className='pinkish'>Number Of Copies: </b>{noOfCopies}</p>
+        </div>
+       
         
         <button className='normal-btn mt-4 w-50' onClick={onButtonClick}>
           Download Document
@@ -147,17 +161,19 @@ const onSubmit = (e) => {
         <div className='col-md-4 ml-4  apply'>
         <div>
               <h4 className='mt-4 mb-2'>
-               <b>Notify Student</b>
+               <b>Actions</b>
               </h4>
               <hr/>
 
-                <button className="btn btn-md bg-success text-white mr-3" onClick={ready}>Document Ready</button> 
-                <button className="btn btn-md bg-danger text-white" onClick={waiting}>Unable To Print Doc</button>
+                <button className="btn btn-md bg-success text-white mr-3" onClick={ready}>Set Status To Ready</button> 
+                <button className="btn btn-md bg-danger text-white" onClick={waiting}>Set Status To Failed</button>
                  
         </div>       
         </div>
       </div>
   </div>
+  </div>
+	
   )
 }
 

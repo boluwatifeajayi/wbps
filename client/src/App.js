@@ -17,6 +17,8 @@ import Home from './pages/Home'
 import Header from './components/layout/Header';
 import SideBar from './components/layout/SideBar';
 import UploadedDocs from './pages/user/UploadedDocs';
+import AllJobs from './pages/station/AllJobs';
+import UpdateStation from './pages/station/UpdateStation';
 
 
 
@@ -39,6 +41,7 @@ function App() {
                 <Route path="/user/login" element={<Login />} />
                 <Route path="/station/register" element={<StationRegister />} />
                 <Route path="/station/login" element={<StationLogin />} />
+                <Route path="/station/jobs" element={<AllJobs />} />
                 <Route
                   path="/user/:stationname/:stationid/create/"
                   element={<CreateDocument />}
@@ -50,6 +53,7 @@ function App() {
                 <Route path="/stations" element={<AllStations />} />
                 <Route path="/station/:stationname/:id" element={<Station />} />
                 <Route path="/user/document/:id" element={<DocumentTrack />} />
+                <Route path="/station/update" element={<UpdateStation />} />
               </Routes>
             </div>
           </div>

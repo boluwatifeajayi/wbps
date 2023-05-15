@@ -15,12 +15,12 @@ const stationSchema = mongoose.Schema({
 	  type: String,
 	  default: ""
 	},
-	// services: {
-	//   type: String,
-	// },
-	location: {
-		type: String,
+	services: {
+	  type: String,
 	},
+	// location: {
+	// 	type: String,
+	// },
 	pricePerPageColor: {
 	  type: Number,
 	  default: 0

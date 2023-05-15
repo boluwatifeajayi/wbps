@@ -67,7 +67,8 @@ function StationLogin() {
         <div>
         <div className="reg-container">
       <div className="reg-wrapper">
-      <h3><b>Login To Vendor Account</b></h3>
+      <h3><b>Cu Printing Vendor</b></h3>
+      <p>Login to your account to continue</p>
          
        <hr/>
        
@@ -95,7 +96,7 @@ function StationLogin() {
               id='stationEmail'
               name='stationEmail'
               value={stationEmail}
-              placeholder='Enter your Email'
+              placeholder='Enter Email'
               onChange={onChange}
             />
           </div>
@@ -114,7 +115,7 @@ function StationLogin() {
           
           <button className="normal-btn mt-2 mb-4">
               <b>
-				        {isLoading ? 'Loading...' : 'Register'}
+				        {isLoading ? 'Loading...' : 'Login'}
               </b> 
           </button>
          
@@ -122,11 +123,11 @@ function StationLogin() {
 
         <span>Already have an account? </span>
         <Link
-          to="/station/login"
+          to="/station/register"
           className="secondary"
           style={{ textDecoration: 'none' }}
         >
-          Login
+          Register
         </Link>
         <br/>
         

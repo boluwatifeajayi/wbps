@@ -362,6 +362,10 @@ p {
   margin-top: 60px;
 }
 
+.log{
+  cursor: pointer;
+}
+
 .regic2{
   width: 40%;
   border: 1px solid #c4cacd;
@@ -1065,3 +1069,8 @@ header{
 /* .regila{
   
 } */
+
+
+.items-text{
+  font-size: 18px;
+}

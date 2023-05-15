@@ -78,6 +78,27 @@ export const GetSingleStation = createAsyncThunk(
 	  }
 	}
   )
+
+
+  export const updateStation = createAsyncThunk(
+	'stationauth/updateStation',
+    async ({  stationId, updatedStationData}, thunkAPI) => {
+      try {
+        
+        return await stationAuthService.updateStation( stationId, updatedStationData)
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString()
+        return thunkAPI.rejectWithValue(message)
+      }
+    }
+  )
+  
+  
 // logout
 export const logoutStation =  createAsyncThunk('stationauth/logoutStation', async () => {
 	await stationAuthService.logoutStation()
@@ -159,6 +180,21 @@ export const stationAuthSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+
+	   // update
+      .addCase(updateStation.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateStation.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+		state.singleStation = action.payload
+      })
+      .addCase(updateStation.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })  
 
 			// logout
 			.addCase(logoutStation.fulfilled, (state) => {

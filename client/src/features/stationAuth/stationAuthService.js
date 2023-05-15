@@ -38,6 +38,19 @@ const GetSingleStation = async (id) => {
 	return response.data	
 }
 
+
+const updateStation = async (stationId, updatedStationData) => {
+	
+	try {
+		const response = await axios.put(`/api/station/station/${stationId}`, updatedStationData)
+	  return response.data;
+	} 
+	
+	catch (error) {
+	  console.error(error);
+	}
+};
+
 // logout
 const logoutStation = () => {
 	localStorage.removeItem('station')
@@ -48,7 +61,8 @@ const stationAuthService = {
 	loginStation,
 	logoutStation,
 	getStations,
-	GetSingleStation
+	GetSingleStation,
+	updateStation
 }
 
 export default stationAuthService

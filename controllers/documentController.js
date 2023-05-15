@@ -17,11 +17,11 @@ const setDocument = asyncHandler(async (req, res) => {
 	const { station, ...docData } = req.body;
   
 	const currentUser = await User.findById(userid);
-	const { _id: userId, firstname } = currentUser;
+	const { _id: userId, firstname, lastname, matricNumber } = currentUser;
   
 	const newDocument = await Document.create({
 	  ...docData,
-	  theUser: { userId, firstname },
+	  theUser: { userId, firstname, lastname, matricNumber },
 	  user: req.user.id,
 	  station: [
 		{

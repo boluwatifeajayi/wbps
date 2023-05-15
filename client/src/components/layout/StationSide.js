@@ -6,7 +6,7 @@ import { logoutStation, stationreset } from '../../features/stationAuth/stationA
 import { Nav } from 'react-bootstrap';
 
 
-function SideBar({student}) {
+function StationSide({student}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userauth);
@@ -21,7 +21,7 @@ function SideBar({student}) {
     } else if (station) {
       dispatch(logoutStation())
       dispatch(stationreset())
-      navigate('/');
+      navigate('/station/login');
     } else {
       console.log('we have some issues');
     }
@@ -31,24 +31,23 @@ function SideBar({student}) {
 <div>
   <div className="sidebar">
     <Nav className="flex-column">
-      <h3>{student?.firstname} {student?.lastname}</h3>
-      <h4>{student?.matricNumber}</h4>
-      <h5>{student?.program}</h5>
+      <h3>{student?.stationName}</h3>
+      <h6>{student?.place}</h6>
 	  <div className='mt-4'>
-	  <Link to="/" className="nav-link side-item mt-3">
-	  <i className="fas fa-desktop mr-2"></i> Printing Stations
+	  <Link to="/station/documents" className="nav-link side-item mt-3">
+	  <i className="fas fa-desktop mr-2"></i> Pending Jobs
       </Link>
-      <Link className="nav-link mt-4 side-item" to={station ? '/station/documents' : '/user/documents'}>
+      <Link className="nav-link mt-4 side-item" to={station ? '/station/jobs' : '/'}>
         <i className="fas fa-print mr-2"></i> {/* Font Awesome icon */}
-        Current Print Jobs
+        	All Jobs
       </Link>
-      <Link to="/user/uploaded" className="nav-link mt-4 side-item">
-        <i className="fas fa-file-upload mr-2"></i> {/* Font Awesome icon */}
-        Uploaded Documents
+      <Link to="/station/update" className="nav-link mt-4 side-item">
+        <i className="fas fa-user mr-2"></i> {/* Font Awesome icon */}
+        	Update Account
       </Link>
       <span className="nav-link log cursor-pointer mt-4 side-item" onClick={onLogout}>
         <i className="fas fa-sign-out-alt mr-2"></i> {/* Font Awesome icon */}
-        Logout
+        	Logout
       </span>
 	  </div>
       
@@ -58,4 +57,4 @@ function SideBar({student}) {
 );
 }
 
-export default SideBar;
+export default StationSide;

@@ -7,13 +7,13 @@ const Station = require('../models/Station')
 // all stations
 async function getStations(req, res) {
 	try {
-	  const allStations = await Station.find();
+	  const allStations = await Station.find().sort({ stationName: 1 });
 	  res.status(200).json(allStations);
 	} catch (error) {
 	  res.status(404).json({ error: "No stations available" });
 	}
   }
-
+  
 // all single stations
 async function getSingleStation(req, res) {
 	try {
@@ -145,10 +145,32 @@ const generateToken = (stationId) => {
 	  res.status(500).json({ message: error.message });
 	}
   });
+
+
+  const updateStation = asyncHandler(async (req, res) => {
+	try {
+	  const { stationId } = req.params;
+	  const updatedStation = await Station.findByIdAndUpdate(
+		stationId,
+		req.body,
+		{ new: true }
+	  );
+  
+	  if (updatedStation) {
+		res.status(200).json(updatedStation);
+	  } else {
+		res.status(404).json({ error: "Station not found" });
+	  }
+	} catch (error) {
+	  res.status(500).json({ error: error.message });
+	}
+  });
+  
   
 
 
 module.exports = {
+	updateStation,
 	registerStation,
 	loginStation,
 	getStation,

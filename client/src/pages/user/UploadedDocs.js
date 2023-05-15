@@ -56,8 +56,8 @@ function UploadedDocs() {
       <SideBar student={user}/>
           </div>
         <section className='push-right'>
-  <h2 className='mt-4'>Welcome {user?.firstname} {user?.lastname} || {user?.matricNumber}</h2>
-  <b className='mt-3'>{user?.program}</b>
+  {/* <h2 className='mt-4'>Welcome {user?.firstname} {user?.lastname} || {user?.matricNumber}</h2>
+  <b className='mt-3'>{user?.program}</b> */}
   <hr />
   <h4 className='mt-4 mb-4'>Your Uploaded Documents</h4>
   <div className='table-responsive mt-4 mb-4'>

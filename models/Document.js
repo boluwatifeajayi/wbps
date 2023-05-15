@@ -55,6 +55,13 @@ const documentSchema = mongoose.Schema({
       type: String,
       default: "mini"
     },
+    lastname: {
+      type: String,
+     
+    },
+    matricNumber: {
+      type: String,
+    }
   },
   station: [
     {
@@ -80,6 +87,6 @@ const documentSchema = mongoose.Schema({
   timestamps: true
 });
 
-documentSchema.index({ createdAt: 1 }, { expireAfterSeconds: 86400 });
+documentSchema.index({ createdAt: 1 });
 
 module.exports = mongoose.model("Document", documentSchema);
