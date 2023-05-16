@@ -29,7 +29,7 @@ function UploadedDocs() {
         },
       };
 
-      const response = await axios.get('https://cu-wbps.cyclic.app/api/documents', config);
+      const response = await axios.get('https://cu-wbps.onrender.com/api/documents', config);
       setData(response.data);
     } catch (error) {
       console.error(error);
