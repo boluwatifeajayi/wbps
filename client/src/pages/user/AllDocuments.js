@@ -70,11 +70,14 @@ function Documents() {
           </thead>
           <tbody>
             {data.length > 0 ? (
-              data.map((object, index) => {
-                const lastStation = object.station[object.station.length - 1];
-                const isPending = lastStation.message.toLowerCase() === 'pending';
+              data
+                .filter(object => {
+                  const lastStation = object.station[object.station.length - 1];
+                  return lastStation.message.toLowerCase() === 'pending';
+                })
+                .map((object, index) => {
+                  const lastStation = object.station[object.station.length - 1];
   
-                if (isPending) {
                   return (
                     <tr key={object.id}>
                       <td>{index + 1}</td>
@@ -82,16 +85,14 @@ function Documents() {
                       <td>{object.thestation}</td>
                       <td>{object?.station[0].estTime} Minute(s)</td>
                       <td>
-                        <span className="badge badge-warning">Pending</span>
+                        <span className="badge badge-warning">{lastStation.message}</span>
                       </td>
                     </tr>
                   );
-                }
-                return null;
-              })
+                })
             ) : (
               <tr>
-                <td colSpan='4'>Not yet uploaded any documents</td>
+                <td colSpan='5'>Not yet uploaded any documents</td>
               </tr>
             )}
           </tbody>
@@ -99,6 +100,8 @@ function Documents() {
       </div>
     </section>
   </div>
+  
+  
   
   );
 }

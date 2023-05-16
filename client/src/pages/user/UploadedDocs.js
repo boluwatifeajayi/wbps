@@ -52,66 +52,53 @@ function UploadedDocs() {
 
   return (
     <div>
-      <div className="sidebar">
-      <SideBar student={user}/>
-          </div>
-        <section className='push-right'>
-  {/* <h2 className='mt-4'>Welcome {user?.firstname} {user?.lastname} || {user?.matricNumber}</h2>
-  <b className='mt-3'>{user?.program}</b> */}
-  <hr />
-  <h4 className='mt-4 mb-4'>Your Uploaded Documents</h4>
-  <div className='table-responsive mt-4 mb-4'>
-    <table className='table table-striped table-bordered'>
-      <thead className='thead-dark'>
-        <tr>
-          <th scope='col'>#</th>
-          <th scope='col'>Document Name</th>
-          <th scope='col'>Vendor</th>
-          <th scope='col'>Est Time</th>
-          <th scope='col'>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-  {data.length > 0 ? (
-    data.map((object, index) => (
-      <tr key={object.id}>
-        <td>{index + 1}</td>
-        <td>{object.docName}</td>
-        <td>{object.thestation}</td>
-        <td>{object?.station[0].estTime}{" "}Minute(s)</td>
-        {object.station.length === 0 ? (
-          <td>
-            <span className="badge badge-warning">Pending</span>
-          </td>
-        ) : (
-          object.station.map((mss) => (
-            <td key={mss.id} className="sizing">
-              <span
-                className={
-                  mss.message.toLowerCase() === 'ready'
-                    ? 'badge badge-success'
-                    : 'badge badge-warning'
-                }
-              >
-                {mss.message}{' '}
-                {mss.message.toLowerCase() === 'ready' && 'for pick up'}
-              </span>
-            </td>
-          ))
-        )}
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan='4'>Not yet uploaded any documents</td>
-    </tr>
-  )}
-</tbody>
-
-    </table>
-  </div>
-</section>
+    <div className="sidebar">
+      <SideBar student={user} />
     </div>
+    <section className='push-right'>
+      <h4 className='mt-4 mb-4'>Your Uploaded Documents</h4>
+      <div className='table-responsive mt-4 mb-4'>
+        <table className='table table-striped table-bordered'>
+          <thead className='thead-dark'>
+            <tr>
+              <th scope='col'>#</th>
+              <th scope='col'>Document Name</th>
+              <th scope='col'>Vendor</th>
+              <th scope='col'>Est Time</th>
+              <th scope='col'>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.length > 0 ? (
+              data.map((object, index) => {
+                const lastMessage = object.station[object.station.length - 1]?.message;
+                const isReady = lastMessage.toLowerCase() === 'ready';
+  
+                return (
+                  <tr key={object.id}>
+                    <td>{index + 1}</td>
+                    <td>{object.docName}</td>
+                    <td>{object.thestation}</td>
+                    <td>{object?.station[0].estTime} Minute(s)</td>
+                    <td>
+                      <span className={isReady ? 'badge badge-success' : 'badge badge-warning'}>
+                        {lastMessage} {isReady && 'for pick up'}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan='5'>Not yet uploaded any documents</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  
   );
 }
 

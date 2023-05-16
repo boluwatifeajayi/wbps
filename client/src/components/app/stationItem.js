@@ -11,7 +11,7 @@ function userDocItem({station}) {
 			  <b className="primary">{job.role}</b>
 		  </div> */}
 		</div>
-		<h2 className='station-name-card'>{station.stationName}</h2>
+		<h1 className='station-name-card'>{station.stationName}</h1>
 	   
 		<div className="spacer">
 		  <div className="intersnhip-box">
@@ -21,7 +21,7 @@ function userDocItem({station}) {
 		</div>
 		<div className="spacer">
 		  <div className="intersnhip-box">
-			  <p><b> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Location:  cst second floor, hall 205</b></p>
+			  <p><b> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Location:  {station.place}</b></p>
 		  </div>
 
 		 

@@ -14,7 +14,22 @@ function Documents() {
 
   const { station } = useSelector((state) => state.stationauth);
 
-  
+  useEffect(() => {
+    if (station === null) {
+      navigate('/station/login');
+    }
+
+    if (isError) {
+      console.log(docmessage);
+    }
+
+   
+
+    return () => {
+      
+      // dispatch(stationreset());
+    };
+  }, []);
 
   useEffect(() => {
     if (isError) {
