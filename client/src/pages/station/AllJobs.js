@@ -82,7 +82,7 @@ function AllJobs() {
                     
                     <td>
                       <Link to={`/station/document/${document._id}`}>
-                        <button className='normal-btn w-50'>Attend To</button>
+                        <button className='normal-btn w-75'>VIEW JOB</button>
                       </Link>
                     </td>
                   </tr>

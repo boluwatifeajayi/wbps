@@ -112,7 +112,7 @@ function Login() {
         
         <button className="normal-btn mt-2 mb-4">
             <b>
-              {isLoading ? 'Loading...' : 'Login'}
+              {isLoading ? 'Loading...' : 'LOGIN'}
             </b> 
         </button>
        

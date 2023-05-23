@@ -70,7 +70,10 @@ function Documents() {
             </thead>
             <tbody>
               {documents.map((document) => {
-                if (document.station.length === 0 || document.station[document.station.length - 1].message.toLowerCase() === 'pending') {
+                if (
+                  document.station.length === 0 ||
+                  document.station[document.station.length - 1].message.toLowerCase() === 'pending'
+                ) {
                   return (
                     <tr key={document._id}>
                       <td>{document.theUser.firstname}</td>
@@ -91,30 +94,32 @@ function Documents() {
                             }
                           >
                             {document.station[document.station.length - 1].message}{' '}
-                            {document.station[document.station.length - 1].message.toLowerCase() === 'ready' && 'for pick up'}
+                            {document.station[document.station.length - 1].message.toLowerCase() === 'ready' &&
+                              'for pick up'}
                           </span>
                         </td>
                       )}
   
                       <td>
                         <Link to={`/station/document/${document._id}`}>
-                          <button className='normal-btn w-50'>Attend To</button>
+                          <button className='normal-btn btn-sm w-75'>VIEW JOB</button>
                         </Link>
                       </td>
                     </tr>
                   );
                 } else {
-                  return null; // Skip rendering documents without "Pending" status
+                  return <h5 className='mt-4 text-center'>No current Pending Jobs</h5>; // Skip rendering documents without "Pending" status
                 }
               })}
             </tbody>
           </table>
         </div>
       ) : (
-        <h3>No Documents</h3>
+        <h3>No current pending jobs</h3> // Display message when there are no pending jobs
       )}
     </section>
   </div>
+  
   
   );
 }

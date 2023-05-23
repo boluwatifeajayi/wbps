@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 
 function userDocItem({station}) {
   return (
-	<div>
+	<div className='stat'>
+		<Link to={`/station/${station.stationName}/${station._id}`}>
 		<div className="my-custom-card-job">
         
 		<div className="spacer">
@@ -11,27 +12,28 @@ function userDocItem({station}) {
 			  <b className="primary">{job.role}</b>
 		  </div> */}
 		</div>
-		<h1 className='station-name-card'>{station.stationName}</h1>
+		<h4 className='station-name-card'>{station.stationName}</h4>
 	   
 		<div className="spacer">
 		  <div className="intersnhip-box">
-			  <p><b className="primary">Status: Active</b></p>
+			  <p className='text-success'>Active</p>
 		  </div>
 		
 		</div>
 		<div className="spacer">
 		  <div className="intersnhip-box">
-			  <p><b> <i className="fa fa-building  ml-2 mr-2" aria-hidden="true"></i>Location:  {station.place}</b></p>
+			  <p>{station.place}</p>
 		  </div>
 
 		 
 		</div>
 		
-		<Link to={`/station/${station.stationName}/${station._id}`}>
+		{/* <Link to={`/station/${station.stationName}/${station._id}`}>
 			<button className="learn-button mt-4">Learn More</button>
-		</Link>
+		</Link> */}
 		
 	  </div>
+	  </Link>
 	</div>
   )
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Badge } from 'reactstrap';
 import SideBar from '../../components/layout/SideBar';
 
-function Documents() {
+function UploadedDocs() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
@@ -70,26 +70,24 @@ function Documents() {
           </thead>
           <tbody>
             {data.length > 0 ? (
-              data
-                .filter(object => {
-                  const lastStation = object.station[object.station.length - 1];
-                  return lastStation.message.toLowerCase() === 'pending';
-                })
-                .map((object, index) => {
-                  const lastStation = object.station[object.station.length - 1];
+              data.map((object, index) => {
+                const lastMessage = object.station[object.station.length - 1]?.message;
+                const isReady = lastMessage.toLowerCase() === 'ready';
   
-                  return (
-                    <tr key={object.id}>
-                      <td>{index + 1}</td>
-                      <td>{object.docName}</td>
-                      <td>{object.thestation}</td>
-                      <td>{object?.station[0].estTime} Minute(s)</td>
-                      <td>
-                        <span className="badge badge-warning">{lastStation.message}</span>
-                      </td>
-                    </tr>
-                  );
-                })
+                return (
+                  <tr key={object.id}>
+                    <td>{index + 1}</td>
+                    <td>{object.docName}</td>
+                    <td>{object.thestation}</td>
+                    <td>{object?.station[0].estTime} Minute(s)</td>
+                    <td>
+                      <span className={isReady ? 'badge badge-success' : 'badge badge-warning'}>
+                        {lastMessage} {isReady && 'for pick up'}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
             ) : (
               <tr>
                 <td colSpan='5'>Not yet uploaded any documents</td>
@@ -101,9 +99,7 @@ function Documents() {
     </section>
   </div>
   
-  
-  
   );
 }
 
-export default Documents;
+export default UploadedDocs;

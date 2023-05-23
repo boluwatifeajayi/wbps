@@ -47,12 +47,12 @@ function Header() {
 
   return (
     <div>
-     <header className="sticky-top" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)" }}>
+     <header className="sticky-top" style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)" , height: "70px" }}>
      <Link to='/' className='logo'>
           <img className='logo-image' src={logo} alt="logo" />
-  <h5>
-    <span className='logo-text'>CU<span>PRINT</span></span>
-  </h5>
+  <h6>
+    <span className='logo-text'>Hebron<span>Print</span></span>
+  </h6>
 </Link>
 
 

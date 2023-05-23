@@ -139,16 +139,16 @@ const CreateDocument = () => {
 		 <div className="sidebar">
 		 <SideBar student={user}/>
           </div>
-
-    <div className="push-right regila regic2">
-      <Link to="/">
-      	<button className='btn btn-block  mt-4 mb-4 w-50' style={{backgroundColor: '#d9dce2'}}> 
-		 <i className='fa fa-arrow-left'></i>{" "}Back
+		  {/* <Link to="/">
+      	<button className='btn btn-sm  mt-4 mb-4 w-25' style={{backgroundColor: '#d9dce2'}}> 
+		 <i className='fa fa-arrow-left'></i>
 		</button>
-      </Link>
+      </Link> */}
+    <div className="push-right regila regic2">
+     
 
-
-        <h2 class="text-center">Upload Your Document</h2>
+	
+        <h4>Upload Your Document</h4>
 		 <hr/>
             <form onSubmit={submit}>
             	<div class="row mt-4">
@@ -255,18 +255,18 @@ const CreateDocument = () => {
 		</div>
 	</div> 
     <div>
-	<input
+	{/* <input
 				type='number'
-				placeholder='Number Of Copies'
-				name='noOfCopies'
-				value={noOfCopies}
+				placeholder='Additional information'
+				name='docName'
+				value={docName}
 				onChange={(e) => {
-				setnoOfCopies(e.target.value);
+				setDocName(e.target.value);
 				updateTotal();
 				}}
 				className='form-input mb-4'
 				required
-			/>
+			/> */}
 	  {paymentMethod === 'Direct Transfer' && (
         <>
           <b>Account details:</b>

@@ -55,9 +55,8 @@ function AllStations() {
           </div>
           
     <div className='push-right'>
-<h3 className='mt-4'>Printing Stations</h3>
+<h3 className='mt-4'>Printing Vendors</h3>
 
- <hr/>
    <section classNameName='mt-4'>
        {stations.length > 0 ? (
          <div className='cat-cards mt-4'> 

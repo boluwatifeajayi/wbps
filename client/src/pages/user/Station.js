@@ -62,9 +62,9 @@ function Station() {
    <div className='row gx-5 mx-1'>
         <div className='col-md-12 border-b job-d mb-4'>
        
-        <h2 className='mt-4'><b>{stationName}</b></h2>
+        <h2 className='mt-4'>{stationName}</h2>
             
-            <h5 className='pinkish'><b><i className='fa fa-building'></i>{" "}location: {place}</b></h5> 
+            <h5 className='pinkish'><i className='fa fa-building'></i>{" "}location: {place}</h5> 
             <p className='bigger'><i className="fa fa-map-marker mt-2"></i>{" "} Status : currently collecting documents</p>
             
                        
@@ -73,13 +73,13 @@ function Station() {
             <div className='row'>
               
               <div className='col'>
-                <p className='bigger'><b><i className='fa fa-circle'></i>{" "}Price For Spiral Bind: {priceSpiralBind}</b></p>
+                <p className='bigger'><b>{" "}Price For Spiral Bind: {priceSpiralBind}</b></p>
               </div>
               <div className='col'>
-              <p className='bigger'><b><i className='fa fa-clock'></i>{" "}Price for colored: {pricePerPageColor}</b></p>
+              <p className='bigger'><b>{" "}Price for colored: {pricePerPageColor}</b></p>
               </div>
               <div className='col'>
-              <p className='bigger'><b><i className='fa fa-clock'></i>{" "}Price for no color: {pricePerPageNoColor}</b></p>
+              <p className='bigger'><b>{" "}Price for no color: {pricePerPageNoColor}</b></p>
               </div>
             </div>
             <hr/>
@@ -88,13 +88,13 @@ function Station() {
             <div className='row'>
               
               <div className='col'>
-                <p className='bigger'><b><i className='fa fa-circle'></i>{" "}Acct No: {accountDetails?.accountNumber}</b></p>
+                <p className='bigger'><b>{" "}Acct No: {accountDetails?.accountNumber}</b></p>
               </div>
               <div className='col'>
-              <p className='bigger'><b><i className='fa fa-clock'></i>{" "}Bank: {accountDetails?.bank}</b></p>
+              <p className='bigger'><b>{" "}Bank: {accountDetails?.bank}</b></p>
               </div>
               <div className='col'>
-              <p className='bigger'><b><i className='fa fa-clock'></i>{" "}Acct Name: {accountDetails?.accountName}</b></p>
+              <p className='bigger'><b>{" "}Acct Name: {accountDetails?.accountName}</b></p>
               </div>
             </div>
             <hr/>

@@ -45,9 +45,13 @@ function StationSide({student}) {
         <i className="fas fa-user mr-2"></i> {/* Font Awesome icon */}
         	Update Account
       </Link>
+      <Link to="/station/update" className="nav-link mt-4 side-item">
+        <i className="fas fa-question-circle mr-2"></i> {/* Font Awesome icon */}
+        	Help
+      </Link>
       <span className="nav-link log cursor-pointer mt-4 side-item" onClick={onLogout}>
         <i className="fas fa-sign-out-alt mr-2"></i> {/* Font Awesome icon */}
-        	Logout
+        	LOGOUT
       </span>
 	  </div>
       

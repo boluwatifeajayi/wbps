@@ -31,12 +31,14 @@ function SideBar({student}) {
 <div>
   <div className="sidebar">
     <Nav className="flex-column">
-      <h3>{student?.firstname} {student?.lastname}</h3>
-      <h4>{student?.matricNumber}</h4>
-      <h5>{student?.program}</h5>
+      <h4 className='initial'>{student?.firstname} {student?.lastname}</h4>
+      <h6>{student?.matricNumber}</h6>
+      <h6>{student?.program}</h6>
+
+      <hr className='bg-white'/>
 	  <div className='mt-4'>
 	  <Link to="/" className="nav-link side-item mt-3">
-	  <i className="fas fa-desktop mr-2"></i> Printing Stations
+	  <i className="fas fa-desktop mr-2"></i> Printing Vendors
       </Link>
       <Link className="nav-link mt-4 side-item" to={station ? '/station/documents' : '/user/documents'}>
         <i className="fas fa-print mr-2"></i> {/* Font Awesome icon */}
@@ -46,9 +48,13 @@ function SideBar({student}) {
         <i className="fas fa-file-upload mr-2"></i> {/* Font Awesome icon */}
         Uploaded Documents
       </Link>
+      <Link to="/user/uploaded" className="nav-link mt-4 side-item">
+        <i className="fas fa-question-circle mr-2"></i> {/* Font Awesome icon */}
+        Help
+      </Link>
       <span className="nav-link log cursor-pointer mt-4 side-item" onClick={onLogout}>
         <i className="fas fa-sign-out-alt mr-2"></i> {/* Font Awesome icon */}
-        Logout
+        LOGOUT
       </span>
 	  </div>
       

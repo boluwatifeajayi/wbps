@@ -131,8 +131,8 @@ const onSubmit = (e) => {
        
         {/* <h2 className='mt-4'><b>{docName}</b></h2> */}
        
-        <h2 className="mb-4">Student: {theUser?.firstname} {theUser?.lastname}</h2>
-        <h5>Matric Number: {theUser?.matricNumber}</h5>
+        <h4 className="mb-4">Student: {theUser?.firstname} {theUser?.lastname}</h4>
+        <h6>Matric Number: {theUser?.matricNumber}</h6>
         <hr/>
         <br/>
         <div className='items-text'>
@@ -148,7 +148,7 @@ const onSubmit = (e) => {
         </div>
        
         
-        <button className='normal-btn mt-4 w-50' onClick={onButtonClick}>
+        <button className='normal-btn mt-4 w-100' onClick={onButtonClick}>
           Download Document
         </button>
                
@@ -165,7 +165,7 @@ const onSubmit = (e) => {
               </h4>
               <hr/>
 
-                <button className="btn btn-md bg-success text-white mr-3" onClick={ready}>Set Status To Ready</button> 
+                <button className="btn btn-md bg-success text-white mr-3 mb-4" onClick={ready}>Set Status To Ready</button>  
                 <button className="btn btn-md bg-danger text-white" onClick={waiting}>Set Status To Failed</button>
                  
         </div>       

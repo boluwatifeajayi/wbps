@@ -1,24 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Inter:wght@300&family=Roboto&display=swap');
 
 body{
   color: #444;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 html{
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h5, h6{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .App {
   text-align: center;
 }
 
+.stat a{
+  color: #333;
+  text-transform: inherit;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+button, a{
+  text-transform: uppercase;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -62,7 +71,7 @@ a:hover{
 }
 
 .form-input{
-  border-radius: 9px;
+  border-radius: 3px;
   border: 1px solid #d9dce2;
   height: 46px;
   padding: 10px 30px;
@@ -70,43 +79,43 @@ a:hover{
 }
 
 .pinkish{
-  color: #0667b6;
+  color: #333;
 }
 
 .normal-btn{
   color: #fff;
-  background-color: #0667b6;
+  background-color: #333;
   width: 100%;
   padding: 10px 30px;
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
 }
 
 .normal-btn-main{
   color: #fff;
-  background-color: #0667b6;
+  background-color: #333;
   font-size: 18px;
   width: 25%;
   padding: 13px 36px;
   border: none;
   font-weight: bold;
-  border-radius: 9px;
+  border-radius: 3px;
   margin-top: 30px;
 }
 
 .normal-btn-short{
   color: #fff;
-  background-color: #0667b6;
+  background-color: #333;
   padding: 10px 30px;
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
 }
 
 .img-contain{
   width: 95%;
   height: 470px;
   margin-right: 50px;
-  border-radius: 9px;
+  border-radius: 3px;
 }
 
 .container-custom{
@@ -115,7 +124,7 @@ a:hover{
 
 .border-b{
   border: 1px solid #d9dce2;
-  border-radius: 9px;
+  border-radius: 3px;
   padding: 15px 30px;
   
 }
@@ -133,7 +142,7 @@ a:hover{
 }
 
 .secondary{
-  color: #0667b6;
+  color: #333;
   font-weight: bold;
 }
 
@@ -192,12 +201,12 @@ a:hover{
 }
 
 .small-normal-btn{
-  color: #0667b6;
-  /* background-color: #0667b6; */
+  color: #333;
+  /* background-color: #333; */
   padding: 5px 20px;
   font-weight: bold;
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
   font-size: 14px;
 }
 
@@ -234,7 +243,7 @@ img {
   background-color: var(--orange);
   padding: 1em 2em;
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
   cursor: pointer;
   transition: var(--smooth);
 
@@ -261,7 +270,7 @@ img {
     background-color: var(--orange);
     padding: 0.5em 1.5em;
     border: none;
-    border-radius: 9px;
+    border-radius: 3px;
     cursor: pointer;
     transition: var(--smooth);
   
@@ -299,14 +308,14 @@ button:hover {
   background-color: transparent;
 }
 h1, h2, h3, h4, h5, h5, h6{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .gray{
   color: #444;
 }
 .primary{
-  color: #0667b6;
+  color: #333;
 }
 p {
   line-height: 25px;
@@ -320,8 +329,8 @@ p {
 }
 
 :root {
-  --orange: #0667b6;
-  --green: #1043eb;
+  --orange: #333;
+  --green: #555;
   --gray: #4b4f51;
   --pink: #f8f8f8;
   --light-pink: #fff9f9;
@@ -330,7 +339,7 @@ p {
 }
 
 .round-border{
-  border-radius: 8px;
+  border-radius: 3px;
 }
 .sizing{
   font-size: 20px;
@@ -344,7 +353,7 @@ p {
 .reg{
   width: 30%;
   border: 1px solid #c4cacd;
-  border-radius: 8px;
+  border-radius: 3px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
@@ -354,7 +363,7 @@ p {
 .regic{
   width: 40%;
   border: 1px solid #c4cacd;
-  border-radius: 8px;
+  border-radius: 3px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
@@ -369,7 +378,7 @@ p {
 .regic2{
   width: 40%;
   border: 1px solid #c4cacd;
-  border-radius: 8px;
+  border-radius: 3px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
@@ -381,7 +390,7 @@ p {
 .regg{
   width: 50%;
   border: 1px solid #c4cacd;
-  border-radius: 8px;
+  border-radius: 3px;
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 30px;
@@ -429,7 +438,7 @@ header{
 }
 
 .nav_link li a:hover{
-  color: #0667b6;
+  color: #333;
 }
 
 @media (max-width: 900px) {
@@ -537,21 +546,22 @@ header{
 }
 
 .form-box .search-btn{
-  background-color: #0667b6;
+  background-color: #333;
   color: #fff;
   height: 50px;
   padding: 10px 30px;
-  border: 1px solid #0667b6;
+  border: 1px solid #333;
   font-size: 17px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .intern-btn{
-  background-color: #0667b6;
+  background-color: #333;
   color: #fff;
   height: 70px;
   padding: 10px 30px;
-  border: 1px solid #0667b6;
+  border: 1px solid #333;
   font-size: 19px;
   font-weight: bold;
 }
@@ -578,12 +588,12 @@ header{
   
   .intern-btn{
     margin-top: 20px;
-    background-color: #0667b6;
+    background-color: #333;
     color: #fff;
     height: 50px;
     width: 100%;
     padding: 13px 30px;
-    border: 1px solid #0667b6;
+    border: 1px solid #333;
     font-size: 16px;
     font-weight: bold;
   }
@@ -594,7 +604,7 @@ header{
 }
 
 .under-text p{
-  color: #0667b6;
+  color: #333;
   font-weight: bold;
   font-size: 13px;
 }
@@ -630,7 +640,7 @@ header{
 
 .my-custom-card{
    
-    border-radius: 9px;
+    border-radius: 3px;
     padding: 3.5rem 2rem;
     border: 1px solid #dcdfdf;
     background-color: ghostwhite;
@@ -640,13 +650,13 @@ header{
 }
 
 .my-custom-card-job{
-  border-radius: 9px;
+  border-radius: 3px;
   padding: 2rem;
   border: 1px solid #dcdfdf;
   background-color: white;
   cursor: pointer;
-  border-bottom: 5px solid #0667b6;
-  height: 340px;
+  border-bottom: 5px solid #333;
+  height: 200px;
   /* position: relative; */
 }
 
@@ -657,13 +667,13 @@ header{
 
 .my-custom-card button{
   border: none;
-  color: #0667b6;
+  color: #333;
   font-weight: bold;
   background-color: transparent;
   cursor: pointer;
   background-color: white;
   padding: 5px 10px;
-  border-radius: 9px;
+  border-radius: 3px;
   /* position: absolute; */
 }
 
@@ -674,7 +684,7 @@ header{
   background-color: var(--orange);
   padding: 1em 2em;
   border: none;
-  border-radius: 9px;
+  border-radius: 3px;
   margin-top: 50px;
   cursor: pointer;
   transition: var(--smooth);
@@ -682,7 +692,7 @@ header{
 
 /* .my-custom-card-job button{
   border: none;
-  color: #0667b6;
+  color: #333;
   font-weight: bold;
   background-color: transparent;
   cursor: pointer;
@@ -693,7 +703,7 @@ header{
 
 
 .my-custom-card:hover{
-  background-color: #0667b6;
+  background-color: #333;
   color: white;
   
 }
@@ -719,7 +729,7 @@ header{
   text-align: center;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius:  3px;
   padding: 15px;
   border: 1px solid #dcdfdf;
 }
@@ -746,12 +756,12 @@ header{
   justify-content: center;
   text-align: center;
   align-items: center;
-  color: #0667b6;
+  color: #333;
   font-weight: bold;
-  border: 1px solid #0667b6;
+  border: 1px solid #333;
   padding: 10px 25px;
   background-color: transparent;
-  border-radius: 9px;
+  border-radius: 3px;
  
 }
 
@@ -810,7 +820,7 @@ header{
 	position: absolute;
 	left:0;
 	bottom: -10px;
-	background-color: #0667b6;
+	background-color: #333;
 	height: 2px;
 	box-sizing: border-box;
 	width: 50px;
@@ -1000,11 +1010,13 @@ header{
   background-color: #343a40;
   color: #fff;
   padding: 20px;
+  font-size: 15px;
 }
 
 .sidebar .nav-link {
   color: #fff;
   padding: 10px;
+  font-size: 15px;
   text-decoration: none;
 }
 
@@ -1014,6 +1026,10 @@ header{
 
 .app-container {
   margin-left: 200px;
+}
+
+.initial{
+  text-transform: capitalize;
 }
 
 .sidebar {
@@ -1027,6 +1043,7 @@ header{
   height: 100vh;
   overflow-y: auto;
   padding-top: 130px;
+  font-size: 15px;
 
 }
 
